@@ -1,0 +1,13 @@
+@use "./variables" as *;
+
+
+@mixin tablet {
+    @media (min-width: $tablet-breakpoint) and (max-width: calc($desktop-breakpoint - 1px)) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}

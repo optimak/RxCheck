@@ -1,0 +1,23 @@
+@use './styles/partials/fonts.scss';
+@use './styles/partials/mixins.scss';
+@use './styles/partials/variables.scss';
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0rem;
+  padding: 0rem;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Poppins";
+}
