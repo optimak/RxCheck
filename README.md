@@ -6,10 +6,14 @@
 The RxCheck app is a user-friendly web platform designed to empower patients in making informed decisions about their medications. It serves as a visual database, presenting comprehensive information on various drugs, enabling patients to select the most suitable medication for their needs.
 
 This project has an accompanyin backend found here: https://github.com/optimak/rxcheck-backend
+
 ### How to Run the App
 Clone the repository and run  `npm install ` in your terminal .
 Then run  `npm start`.
 
+### Preview
+
+![Alt Text](https://lh3.googleusercontent.com/drive-viewer/AKGpiha-ciyTsHqk_yN-kUqPLd544iKgU3D3dvjhCu-wuimF5amMwm6s3uXvJiXPaxNxmUnnpc7R4JvgPj6XRjHs2y23PYhDmw=s2560)
 ### Problem
 
 RxCheck is essential because it addresses common challenges patients face when managing their medications. These challenges include limited access to understandable drug information, high drug prices, and concerns about side effects. By offering features like price comparison, allergy alerts, and user reviews, the app empowers patients to find affordable, suitable medications and make informed decisions about their health. Overall, it simplifies medication management and improves health outcomes for users.
@@ -108,9 +112,7 @@ Details / Information :
 Here useres can view detailed information and later check for interactions and allergens, and read user reviews. Users will later be able to book pharmacist calls for further assistance.
 
 
-### Mockups
 
--to come
 
 ### Data
 
