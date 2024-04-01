@@ -170,9 +170,6 @@ Client-side and Server-side authorization were used to authenticate each user fo
 
 ## Roadmap
 
-### Sprint Duration: 11 days
-
-
 ### Deliverables by the end of Sprint:
 - Completed sign-in page
 - Dashboard with user overview and pharmacist call booking option
