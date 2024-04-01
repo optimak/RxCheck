@@ -1,0 +1,48 @@
+@use '../../styles/partials/fonts.scss' as *;
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/variables.scss' as *;
+
+.dashboard {
+    padding-top: 58px;
+
+    &__card {
+        margin: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__image {
+        position: relative;
+        top:0.25rem;
+        width: 300px;
+        height: 300px;
+        background-image: url('../../assets/icons/avatar.png');
+        object-fit: fill;
+        background-position: center;
+        background-size: 300px 300px;
+        border-radius: 80px;
+        background-repeat: no-repeat;
+        margin-bottom: 2.5rem;
+
+    }
+    &__title {
+        margin: 2.5rem 0 1.5rem;
+    }
+    &--sizing {
+        font-size: 1.8rem;
+        color: $silver;
+        margin: 1rem 0;
+    }
+    &__profile{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 9%;
+        padding-top: 2.5rem;
+        & p {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+    }
+}

@@ -1,6 +1,6 @@
-@use './styles/partials/fonts.scss';
-@use './styles/partials/mixins.scss';
-@use './styles/partials/variables.scss';
+@use './styles/partials/fonts.scss' as *;
+@use './styles/partials/mixins.scss' as *;
+@use './styles/partials/variables.scss' as *;
 
 
 *,
@@ -9,6 +9,7 @@
   box-sizing: border-box;
   margin: 0rem;
   padding: 0rem;
+  // border: 0.5px solid red;
 }
 
 body {
@@ -16,6 +17,40 @@ body {
   font-family: "Poppins";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  // background-color: #fffaf9;
+  background-color: #FFF3E1;
+  height: 100vh;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 1.85rem;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+  // $rx-blue;
+  font-weight: 600;
+  display: flex;
+  width: inherit;
+  height: inherit;
+
+
+  &>div {
+    width: inherit;
+    height: inherit;
+    // display: flex;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: #ff3c0e;
+    // $rxcheck-orange: #ff5c35;
+  }
 }
 
 code {

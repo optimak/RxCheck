@@ -1,0 +1,51 @@
+@use '../../styles/partials/fonts.scss' as *;
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/variables.scss' as *;
+
+.header {
+    background-color: white;
+    display: flex;
+    width: 100%;
+    position: fixed;
+    border-bottom: 0.5px solid $silver;
+
+    &>a {
+        width: 120px;
+        // height: 50px;
+        margin-right: 55%;
+
+    }
+
+    &__logo {
+        width: 100%;
+    }
+
+
+    &__logo {
+        width: 120px;
+        margin: 1rem;
+        // height: 50px;
+        // width: 50px;
+        // height: 50px;
+        // background-image: url("../../assets/logo/logo-no-background.png");
+        // object-fit: fill;
+        // background-position: center;
+        // background-size: 50px 50px;
+        // background-repeat: no-repeat;
+        // border-radius: 25px;
+
+    }
+
+    &__functions {
+        display: flex;
+        width: 59%;
+        align-items: center;
+
+        // justify-content: space-evenly;
+        & a {
+            justify-content: center;
+            margin: 0 auto;
+        }
+    }
+
+}

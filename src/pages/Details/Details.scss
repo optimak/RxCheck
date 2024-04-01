@@ -1,0 +1,247 @@
+@use '../../styles/partials/fonts.scss' as *;
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/variables.scss' as *;
+
+.details {
+    position: relative;
+    bottom: 90px;
+    // background-color: #fffaf9;
+    background-color: #FFF3E1;
+
+    display: flex;
+    // flex-direction: ;
+    // justify-content: start;
+
+    & strong {
+        color: $rx-burnt-orange;
+        font-size: 1.25rem;
+    }
+
+    &__drug-list {
+        padding-left: 0.2rem;
+        // width: 50%;
+        // object-fit: contain;
+        // overflow: hidden;
+        margin: 1rem;
+        margin-right: 0;
+
+        // position: relative;
+        // left:300px;
+        // display: flex;
+        flex-direction: column;
+        align-items: left;
+
+        width: inherit;
+
+        & p,
+        div {
+            text-align: left;
+        }
+    }
+
+    &__drug-card {
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+
+        border-radius: 10px;
+        width: 100%;
+        margin: 0.5rem 0;
+        display: flex;
+        background-color: white;
+        // height:auto;
+
+    }
+
+    &__drug-link {
+
+        // width: 80%;
+        // width:initial;
+        &>.details__drug-name :hover {
+            color: white;
+        }
+
+    }
+
+    &__drug-name {
+        display: flex;
+        font-size: 0.5rem;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        background-color: #ff8b70;
+        // box-sizing: content-box;
+        height: 100%;
+        padding: 0 0.29rem;
+        margin: 0;
+        border-top-right-radius: 0;
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 0;
+
+        border-bottom-left-radius: 10px;
+        flex-wrap: wrap;
+
+        // font-size: 19px;
+        &:hover {
+            color: $white;
+        }
+    }
+
+    &__drug-details {
+        width: auto;
+        height: 100%;
+        margin-left: 0.7rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem 0;
+        flex-wrap: wrap;
+        // padding: 1.5rem;
+        font-size: 1rem;
+
+        & p {
+            font-size: 0.8rem;
+        }
+    }
+
+    &__drug-subtitle {
+        color: $silver;
+        font-size: 0.53rem;
+    }
+
+    &__drug-detail {
+        font-size: 0.53rem;
+        display: flex;
+    }
+
+    &__med {
+        margin: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+
+        border-radius: 10px;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+        height: fit-content;
+
+
+
+    }
+
+    &__med-name {
+        display: flex;
+        margin: 2rem;
+
+        & img {
+            width: 2.5rem;
+            // padding: 1rem 0.5rem;
+            object-fit: contain;
+        }
+
+        & h3 {
+            font-size: 1.99rem;
+            margin: 0.5rem;
+        }
+    }
+
+    &__med-divider {
+        border: 0.4px solid $rx-orange;
+        width: 90%;
+        margin-bottom: 3.5rem;
+
+    }
+
+    &__med-details {
+
+        // box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+        border: 1px solid $rx-orange;
+        border-radius: 10px;
+        padding: 2rem;
+        width: 90%;
+        margin-bottom: 3.5rem;
+
+        &>div {
+            display: flex;
+            justify-content: left;
+            margin: 1.3rem 0rem;
+            align-items: center;
+
+        }
+
+        & p {
+            margin: 0rem 0.5rem;
+
+
+        }
+
+        & .details__med-subtitle {
+            color: #8c8a8a;
+            font-size: 0.8rem;
+            padding-top: 0.01rem;
+            font-weight: 600;
+            width: 28%;
+            text-align: left;
+
+        }
+    }
+
+    &__med-comments {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin-bottom: 3rem;
+
+        & img {
+            width: 50px;
+
+        }
+    }
+
+    &__med-comment {
+        display: flex;
+        margin: 0.5rem 0;
+        width: 100%;
+        & p {
+            font-size: 0.8rem;
+            text-align: left;
+        }
+
+    }
+
+    &__med-comment-image {
+        position: relative;
+        top:0.25rem;
+        width: 50px;
+        height: 50px;
+        background-image: url('../../assets/icons/avatar.png');
+        object-fit: fill;
+        background-position: center;
+        background-size: 50px 50px;
+        border-radius: 25px;
+
+    }
+
+    &__med-comment-right-styler {
+        padding-left: 2rem;
+        padding-top: 0.5rem;
+        width: 90%;
+
+
+        &>h6 {
+            color: $silver;
+            font-size: 0.8rem;
+            text-align: left;
+            padding: 0.25rem 0 0.5rem;
+        }
+    }
+    &__med-comment-top {
+        display: flex;
+        width: 100%;
+        // justify-content: space-evenly;
+        & p {
+            position: absolute;
+            left: 85%;
+        }
+    }
+}

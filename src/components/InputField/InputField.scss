@@ -1,0 +1,26 @@
+
+@use '../../styles/partials/fonts.scss' as *;
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/variables.scss' as *;
+.field {
+    display: flex;
+    flex-direction: column;
+
+    &__label {
+        margin-bottom: 0.5rem;
+    }
+
+    &__input {
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        font-size: inherit;
+        &:focus {
+            border: 1px solid $rx-orange;
+            outline: $rx-orange;
+            
+        }
+      
+    }
+}

@@ -1,0 +1,62 @@
+@use '../../styles/partials/fonts.scss' as *;
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/variables.scss' as *;
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0.5px solid $silver;
+    border-radius: 20px;
+    padding: 8px;
+    width: 40rem;
+    text-align: center;
+    margin: auto;
+    margin: 1rem auto;
+    background-color: #ffffff;
+}
+
+.search-input {
+    border: 0.5px solid $silver;
+    border-radius: 20px;
+    padding: 8px;
+    margin-right: 8px;
+
+    &::placeholder {
+        font-size: 0.7rem;
+    }
+}
+
+
+.select-box {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+    border: 0.5px solid $silver;
+    border-radius: 15px;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    padding-right: 1rem;
+}
+
+.search-button {
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    background-color: $rx-burnt-orange;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+
+    &:hover {
+        background-color: $rx-orange;
+        font-weight: 600;
+
+    }
+}
