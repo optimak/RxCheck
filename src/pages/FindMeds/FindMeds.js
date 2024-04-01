@@ -7,6 +7,7 @@ import InputField from "../../components/InputField/InputField";
 import SearchBar from "../../components/SearchBar/SearchBar";
 // import SearchPage from "../SearchPage/SearchPage";
 import './FindMeds.scss';
+import { useNavigate } from "react-router-dom";
 
 
 function FindMeds() {
@@ -16,6 +17,7 @@ function FindMeds() {
     const [isLoadingData, setIsLoadingData] = useState(true);
     const [medData, setMedData] = useState([]);
     const [filteredMeds, setFilteredMeds] = useState([]);
+    const navigate = useNavigate();
 
 
 
@@ -77,11 +79,7 @@ function FindMeds() {
 
     if (failedAuth) {
         return (
-            <main className="dashboard">
-                <h1 className="dashboard__title">Dashboard</h1>
-                <p>You must be logged in to see this page.</p>
-                <p><Link to="/login">Log in</Link></p>
-            </main>
+            navigate("/")
         )
     }
     if (isLoading || isLoadingData) {

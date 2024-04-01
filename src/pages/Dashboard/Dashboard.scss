@@ -46,3 +46,9 @@
         }
     }
 }
+.dashboard__title-header {
+    & > a{
+        margin: 0 auto;
+        width:auto
+    }
+}

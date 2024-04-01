@@ -4,6 +4,8 @@
 
 .login-page {
     // background-color: #fdf9f8c5;
+    position:relative;
+    z-index: 200;
     background-color:#FFF3E1;
     min-height: 100vh;
     display: flex;

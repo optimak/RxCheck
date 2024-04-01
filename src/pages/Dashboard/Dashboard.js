@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../../consts";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [failedAuth, setFailedAuth] = useState(false);
+  const navigate = useNavigate();
 
   const getProfile = async () => {
     const token = sessionStorage.getItem("token");
@@ -38,11 +40,7 @@ function Dashboard() {
 
   if (failedAuth) {
     return (
-      <main className="dashboard">
-        <h1 className="dashboard__title">Dashboard</h1>
-        <p>You must be logged in to see this page.</p>
-        <p><Link to="/login">Log in</Link></p>
-      </main>
+    navigate("/login")
     )
   }
 
@@ -68,7 +66,7 @@ function Dashboard() {
         <h2 className="dashboard--sizing">My Profile</h2>
         <div className="dashboard__profile">
           <p> {profile.full_name}</p>
-          
+
           <p>{profile.email}</p>
           <p>{profile.age} years old</p>
           <p>{profile.gender}</p>

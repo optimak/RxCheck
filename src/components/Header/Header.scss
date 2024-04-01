@@ -49,3 +49,9 @@
     }
 
 }
+.dashboard__title-header{
+    margin: 0 auto;
+    & a {
+        // margin: inherit;
+    }
+}

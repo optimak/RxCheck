@@ -3,10 +3,15 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import logo from "../../assets/logo/logo-no-background.png";
 import './Header.scss';
+import { useNavigate } from "react-router-dom";
+
 
 function Header() {
     const [profile, setProfile] = useState(null);
     const [failedAuth, setFailedAuth] = useState(false);
+    const navigate = useNavigate();
+
+
     const logout = () => {
         sessionStorage.removeItem("token");
         setFailedAuth(true);
@@ -17,15 +22,14 @@ function Header() {
     //     getProfile();
     //   }, []);
 
-    if (failedAuth) {
-        return (
-            <main className="dashboard">
-                <h1 className="dashboard__title">Dashboard</h1>
-                <p>You must be logged in to see this page.</p>
-                <p><Link to="/login">Log in</Link></p>
-            </main>
-        )
-    }
+    // if (failedAuth) {
+    //     return (
+         
+
+    //     navigate("/login")
+
+    //     )
+    // }
     return (
         <div className='header'>
             <Link to='/' >
