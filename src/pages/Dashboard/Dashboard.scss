@@ -5,15 +5,167 @@
 .dashboard {
     padding-top: 58px;
 
+    &__hero {
+        background-color: white;
+        width: 100vw; ///check below component
+        padding: 1rem 4rem 1.5rem;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & p {
+            padding-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        &-styler {
+            display: flex;
+            align-items: center;
+
+        }
+
+        &-texts {
+            padding-left: 6rem;
+            text-align: left;
+            padding-top: 2rem;
+        }
+
+        &-img {
+            width: 70%;
+            height: auto;
+            position: relative;
+            top: 2rem;
+        }
+
+        &-search {
+            border: none;
+            border-radius: 7px;
+            padding: 8px 16px;
+            background-color: $rx-orange;
+            color: #ffffff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-right: 0.25rem;
+
+            &:hover {
+                background-color: $rx-burnt-orange;
+                font-weight: 600;
+
+            }
+        }
+
+        &-saved {
+            border: 1px solid $rx-orange;
+            border-radius: 7px;
+            padding: 8px 16px;
+            background-color: white;
+            color: $rx-orange;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-right: 0.25rem;
+
+            &:hover {
+                border-color: $rx-burnt-orange;
+                color: $rx-burnt-orange;
+                font-weight: 600;
+
+            }
+        }
+
+        &-link {
+            width: 140px;
+            margin-right: 3rem;
+            position: relative;
+            top: -5rem;
+            left: 2rem;
+        }
+
+        &-actions {
+            display: flex;
+            width: 90%;
+            justify-content: flex-start;
+        }
+    }
+
     &__card {
         margin: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+
+    &__features {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & strong {
+            font-size: 0.85rem;
+            border-bottom: 1px solid $rx-orange;
+            padding-bottom: 1rem;
+
+        }
+
+        & h2 {
+            padding: 4rem 0 1rem;
+        }
+
+        & ul {
+            display: flex;
+            padding: 2rem 3rem;
+            list-style-type: none;
+            // text-align: left;
+            width: 90%;
+            // height: 110%;
+            padding-left: 4rem;
+
+            & div {
+                text-align: left;
+
+            }
+        }
+
+        & li {
+
+            margin: 0 1.25rem;
+            // border: 1px solid red;
+            background-color: white;
+            padding: 2rem 1.5rem;
+            padding-bottom: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+            border-radius: 10px;
+            width: 20vw;
+            // height: 100%;
+
+            & p {
+                font-size: 0.8rem;
+                padding:1.5rem 0 0.5rem;
+                // margin-top: 5rem;
+                // text-align: ;
+            }
+
+            & div {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
+
+
+        }
+    }
+    &__saved {
+        & h2 {
+            padding: 3rem 0 1rem;
+        }
+    }
+
     &__image {
         position: relative;
-        top:0.25rem;
+        top: 0.25rem;
         width: 300px;
         height: 300px;
         background-image: url('../../assets/icons/avatar.png');
@@ -25,30 +177,37 @@
         margin-bottom: 2.5rem;
 
     }
+
     &__title {
         margin: 2.5rem 0 1.5rem;
     }
+
     &--sizing {
         font-size: 1.8rem;
         color: $silver;
         margin: 1rem 0;
     }
-    &__profile{
+
+    &__profile {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        padding-left: 9%;
+        // padding-left: 9%;
         padding-top: 2.5rem;
+
+        & h2 {}
+
         & p {
             margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 1.2rem;
+            font-weight: 400;
+            font-size: 1rem;
         }
     }
 }
+
 .dashboard__title-header {
-    & > a{
+    &>a {
         margin: 0 auto;
-        width:auto
+        width: auto
     }
 }

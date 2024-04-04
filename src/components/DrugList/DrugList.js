@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import './DrugList.scss'
 
 
-function DrugList({ filteredMeds }) {
+function DrugList({ filteredMeds, profileId }) {
+    console.log(profileId)
+    console.log(filteredMeds)
     return (
         // <div>DrugList</div>
         <div className='drug-list'>
@@ -11,7 +13,7 @@ function DrugList({ filteredMeds }) {
             (<Link 
                 className='drug-list__link' 
             to={`/search/${med.id}`}
-                state={{ filteredMeds }}>
+                state={{ filteredMeds,profileId }}>
                 <div className='drug-list__card' key={med.id}>
 
                     {/* {med.indications} */}

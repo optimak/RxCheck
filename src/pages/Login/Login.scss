@@ -4,15 +4,30 @@
 
 .login-page {
     // background-color: #fdf9f8c5;
-    position:relative;
+    position: relative;
+    top:-3rem;
     z-index: 200;
-    background-color:#FFF3E1;
+    background-color: #FFF3E1;
+    background-color: #FFF2ED;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1rem;
+
+    & a {
+        color: $rx-blue ;
+        margin-left: 0.7rem;
+        &:hover {
+            color: $rx-orange;
+        }
+
+    }
+
+    & p {
+        display: flex;
+    }
 }
 
 .login {
@@ -24,6 +39,7 @@
     border-radius: 0.5rem;
     padding: 2rem 1.5rem;
     margin-bottom: 1rem;
+
     &__logo {
         // margin: 0 auto;
         margin-left: 62px;
@@ -66,7 +82,7 @@
         padding: 0.5rem;
         margin-top: 2rem;
         font-size: 0.75rem;
-        color:$rx-orange;
+        color: $rx-orange;
     }
 }
 
@@ -75,8 +91,7 @@
     width: 100%;
     position: relative;
     // left: -7.5%;
-    border-top: 0.5px solid $rx-orange
-    ;
+    border-top: 0.5px solid $rx-orange ;
     border-bottom: 0;
     border-left: 0;
 

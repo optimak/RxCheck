@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        {/* <Header />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
@@ -26,6 +26,23 @@ function App() {
             <Route path=":medId" element={<Details />} />
           </Route>
           <Route path="*" element={<Dashboard />} />
+
+        </Routes> */}
+
+        {/* <Header /> */}
+        <Routes>
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<><Header /> <Dashboard /></>} />
+
+
+          <Route path="/search" element={<><Header /> <FindMeds /> </>} >
+            <Route path="" element={<SearchPage />} />
+
+            <Route path=":medId" element={<Details />} />
+          </Route>
+          <Route path="*" element={<><Header /><Dashboard /> </>} />
 
         </Routes>
       </BrowserRouter>

@@ -35,7 +35,7 @@ export default function CommentForm({medId, profileId}) {
                 <label className="main__label" htmlFor="comment">
                     WRITE A REVIEW
                 </label>
-                <input className="main__textbox" type="text" name="comment" id="comment" placeholder='Add a new comment' />
+                <input className="main__textbox" type="text" name="comment" id="comment" placeholder='Add your review' />
                 <button className="main__button">
                     {/* <img className="main__button-icon" src={commentIcon} alt="comment icon"></img> */}
 

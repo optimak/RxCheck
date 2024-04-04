@@ -7,9 +7,9 @@
     align-items: center;
     justify-content: space-between;
     border: 0.5px solid $silver;
-    border-radius: 20px;
+    border-radius: 9px;
     padding: 8px;
-    width: 40rem;
+    width: 85%;
     text-align: center;
     margin: auto;
     margin: 1rem auto;
@@ -18,13 +18,20 @@
 
 .search-input {
     border: 0.5px solid $silver;
-    border-radius: 20px;
+    border-radius: 9px;
     padding: 8px;
     margin-right: 8px;
+    width: 40%;
 
     &::placeholder {
-        font-size: 0.7rem;
+        font-size: 0.87rem;
     }
+    &:focus {
+        border: 1px solid $rx-burnt-orange;
+        outline: $rx-burnt-orange;
+        
+    }
+  
 }
 
 
@@ -38,21 +45,23 @@
     background-position-x: 95%;
     background-position-y: 50%;
     border: 0.5px solid $silver;
-    border-radius: 15px;
+    border-radius: 7px;
     margin-right: 0.5rem;
     padding: 0.5rem;
-    padding-right: 1rem;
+    padding-right: 1.2rem;
+    margin: 0.25rem;
 }
 
 .search-button {
     border: none;
-    border-radius: 20px;
+    border-radius: 7px;
     padding: 8px 16px;
     background-color: $rx-burnt-orange;
     color: #ffffff;
     cursor: pointer;
     font-weight: 600;
     font-size: 1rem;
+    margin-right: 0.25rem;
 
     &:hover {
         background-color: $rx-orange;
