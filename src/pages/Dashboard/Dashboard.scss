@@ -66,6 +66,11 @@
             font-weight: 600;
             font-size: 1rem;
             margin-right: 0.25rem;
+            width: 140px;
+            margin-right: 3rem;
+            position: relative;
+            top: -5rem;
+            left: 2rem;
 
             &:hover {
                 border-color: $rx-burnt-orange;

@@ -1,5 +1,5 @@
 import "./Dashboard.scss";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../../consts";
@@ -12,6 +12,18 @@ function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [failedAuth, setFailedAuth] = useState(false);
   const navigate = useNavigate();
+
+
+  // import { useRef } from react;
+
+  const savedSection = useRef(null);
+
+  const scrollTo = () => {
+    window.scrollTo({ top: savedSection.current.offsetTop, behavior: 'smooth', });
+  }
+  {/* <button className="link" onClick={scrollTo}> About Us </button>
+
+<div className="about" ref={aboutSection}> <h2>About Us</h2> </div>  */}
 
   const getProfile = async () => {
     const token = sessionStorage.getItem("token");
@@ -81,9 +93,9 @@ function Dashboard() {
               <Link className="dashboard__hero-link" to='/search'>
                 <button className="dashboard__hero-search" > Search Meds</button>
               </Link>
-              <Link className="dashboard__hero-link" to='/#saved' >
-                <button className="dashboard__hero-saved" > Your Pill Box</button>
-              </Link>
+              {/* <Link className="dashboard__hero-link" to='#saved' > */}
+                <button className="dashboard__hero-saved" onClick={scrollTo} > Your Pill Box</button>
+              {/* </Link> */}
             </div>
           </section>
           <section id="features" className="dashboard__features">
@@ -139,12 +151,12 @@ function Dashboard() {
         </div>
 
 
-        <section id="saved" className="dashboard__saved">
+        <section id="saved" ref={savedSection} className="dashboard__saved">
           <h2
           // className="dashboard--sizing"
           > Your Pill Box </h2>
           <p>{`Here are the items in your pill box ${profile.full_name.split(" ")[0]}!`}</p>
-          <SavedMeds id={profile.id}/>
+          <SavedMeds id={profile.id} />
           <div className="dashboard__profile">
             {/* <p> {profile.full_name}</p> */}
             {/* <h2> Your information</h2>
@@ -168,4 +180,4 @@ function Dashboard() {
 }
 
 
-export default Dashboard
+export default Dashboard;
