@@ -15,7 +15,7 @@ import CommentForm from '../../components/CommentForm/CommentForm';
 
 
 
-function Details({userMeds,updateUserDrugs, deleteUserMed}) {
+function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentCommentId, setCurrentCommentId] = useState(null);
     const { medId } = useParams()
@@ -90,7 +90,7 @@ function Details({userMeds,updateUserDrugs, deleteUserMed}) {
             medication_id: medId
         }
         try {
-            const response = await axios.post(`${baseUrl}users/${profileId}/meds`,savedMed)
+            const response = await axios.post(`${baseUrl}users/${profileId}/meds`, savedMed)
             // setProfile(response.data);
             // setUserMeds(response.data)
             console.log("saved MEDS", response.data)
@@ -197,13 +197,13 @@ function Details({userMeds,updateUserDrugs, deleteUserMed}) {
 
     const saveHandler = () => {
         updateUserDrugs()
-        if (isSaved() === true){
-            deleteUserMed(med.id,profileId)
-        }else{
+        if (isSaved() === true) {
+            deleteUserMed(med.id, profileId)
+        } else {
             addUserMed(med.id)
         }
         return
-  
+
     }
 
 
@@ -281,158 +281,161 @@ function Details({userMeds,updateUserDrugs, deleteUserMed}) {
     }
     console.log(isLoadingData)
     // ,isLoadingUserMeds)
-   
+
 
 
     return (
         <div className='details'>
-            {isLoadingData 
-            // || isLoadingUserMeds
-             ? (
-                // <p> 
-                    <img src={pill} 
-                style={{ width: '100px', height: '100px', margin: '0 auto' }}
-                alt='pill' />
-            ) : (
+            {isLoadingData
+                // || isLoadingUserMeds
+                ? (
+                    // <p> 
+                    <img src={pill}
+                        style={{ width: '100px', height: '100px', margin: '0 auto' }}
+                        alt='pill' />
+                ) : (
 
-                <>
-                    <div className='details__all'>
-             
-                        <div className='details__med'>
+                    <>
+                        <div className='details__all'>
 
-                            <div className='details__med-name'>
-                                <img src={pill} alt='pill' />
-                                <h3>{med.name}</h3>
-                                <div className='saved-icons' onClick={saveHandler}>
-                                    {isSaved()
-                                        ? (<div className="saved-icon">&#9733; </div>) : (<div className="saved-icon--not">&#9734;</div>)
-                                    }
-                                
-                                </div>
-                            </div>
-                            <div className='details__med-divider'> </div>
-                            <div className='details__med-details'>
+                            <div className='details__med'>
 
-                                <p className='details__med-text'> <strong> Used for {med.indications} </strong> </p>
-                                <div>
-                                    <p className='details__med-subtitle'> ACTIVE INGREDIENT</p>
-                                    <p className='details__med-text'>{med.active_ingredient} </p>
-                                </div>
-                                <div>
-                                    <p className='details__med-subtitle'> SIDE EFFECTS INCLUDE</p>
-                                    <p className='details__med-text'>{med.side_effects} </p>
-                                </div>
-                                <div>
-                                    <p className='details__med-subtitle'> AVOID IF YOU HAVE</p>
-                                    <p className='details__med-text'>{med.contra_indications} </p>
-                                </div>
-                                <div>
-                                    <p className='details__med-subtitle'> FOOD INTERACTIONS</p>
-                                    <p className='details__med-text'>{med.food_interactions} </p>
-                                </div>
+                                <div className='details__med-name'>
+                                    <img src={pill} alt='pill' />
+                                    <h3>{med.name}</h3>
+                                    <div className='saved-icons' onClick={saveHandler}>
+                                        {isSaved()
+                                            ? (<div className="saved-icon">&#9733; </div>) : (<div className="saved-icon--not">&#9734;</div>)
+                                        }
 
-                            </div>
-                            <div className='details__med-divider'> </div>
-
-                            {(checkConditions()) ?
-                                (<div className='details__med-warning'>
-                                    <img src={warniing} alt='warning' />
-                                    <div className='details__med-warning-styler'>
-                                        <div> {med.name} may not be suitable for you due to your pre-existing condition, {profile.preexisting_conditions.toLowerCase()}. </div>
-                                        <div>Please consult your doctor before considering this medication. </div>
                                     </div>
-                                </div>)
-                                : (<div> </div>)}
-                            <div className='details__med-divider'> </div>
+                                </div>
+                                <div className='details__med-divider'> </div>
+                                <div className='details__med-details'>
 
-                            <CommentForm medId={medId} profileId={profileId} />
+                                    <p className='details__med-text'> <strong> Used for {med.indications} </strong> </p>
+                                    <div>
+                                        <p className='details__med-subtitle'> ACTIVE INGREDIENT</p>
+                                        <p className='details__med-text'>{med.active_ingredient} </p>
+                                    </div>
+                                    <div>
+                                        <p className='details__med-subtitle'> SIDE EFFECTS INCLUDE</p>
+                                        <p className='details__med-text'>{med.side_effects} </p>
+                                    </div>
+                                    <div>
+                                        <p className='details__med-subtitle'> AVOID IF YOU HAVE</p>
+                                        <p className='details__med-text'>{med.contra_indications} </p>
+                                    </div>
+                                    <div>
+                                        <p className='details__med-subtitle'> FOOD INTERACTIONS</p>
+                                        <p className='details__med-text'>{med.food_interactions} </p>
+                                    </div>
+
+                                </div>
+                                <div className='details__med-divider'> </div>
+
+                                {(checkConditions()) ?
+                                    (<><div className='details__med-warning'>
+                                        <img src={warniing} alt='warning' />
+                                        <div className='details__med-warning-styler'>
+                                            <div> {med.name} may not be suitable for you due to your pre-existing condition, {profile.preexisting_conditions.toLowerCase()}. </div>
+                                            <div>Please consult your doctor before considering this medication. </div>
+                                        </div>
+
+                                    </div>
+                                        <div className='details__med-divider'> </div>
+                                    </>)
+                                    : (<div> </div>)}
 
 
-                            <div className='details__med-divider'> </div>
-                            {(comments.length === 0) ?
-                                (<div className='details__med-comments'> Be the first to write a review 😊 </div>) :
-                                (<div className='details__med-comments'>
-                                    <p className="details__label" >
-                                        REVIEWS
-                                    </p>
-                                    {comments.map(comment =>
+                                <CommentForm medId={medId} profileId={profileId} />
 
-                                        <div className='details__med-comment' key={comment.id}>
 
-                                            <div className='details__med-comment-image' > </div>
+                                <div className='details__med-divider'> </div>
+                                {(comments.length === 0) ?
+                                    (<div className='details__med-comments'> Be the first to write a review 😊 </div>) :
+                                    (<div className='details__med-comments'>
+                                        <p className="details__label" >
+                                            REVIEWS
+                                        </p>
+                                        {comments.map(comment =>
 
-                                            <div className='details__med-comment-right-styler'>
-                                                <div className='details__med-comment-top'> <h6 className='details__med-subtitle'> {comment.user_name} </h6>
-                                                    <p className='details__med-date'>{new Date(comment.updated_at).toLocaleDateString('en-US')}</p>
+                                            <div className='details__med-comment' key={comment.id}>
+
+                                                <div className='details__med-comment-image' > </div>
+
+                                                <div className='details__med-comment-right-styler'>
+                                                    <div className='details__med-comment-top'> <h6 className='details__med-subtitle'> {comment.user_name} </h6>
+                                                        <p className='details__med-date'>{new Date(comment.updated_at).toLocaleDateString('en-US')}</p>
+                                                    </div>
+                                                    <div className='details__med-comment-bottom'>
+                                                        <p>  {comment.content} </p>
+                                                        {comment.user_id === profileId && (
+                                                            // <button onClick={() => handleDelete(comment.id)}>Delete</button>
+                                                            <img src={deleteIcon} alt='delete' onClick={() => handleDeleteClick(comment.id)} />
+                                                        )}
+                                                    </div>
                                                 </div>
-                                                <div className='details__med-comment-bottom'>
-                                                    <p>  {comment.content} </p>
-                                                    {comment.user_id === profileId && (
-                                                        // <button onClick={() => handleDelete(comment.id)}>Delete</button>
-                                                        <img src={deleteIcon} alt='delete' onClick={() => handleDeleteClick(comment.id)} />
-                                                    )}
-                                                </div>
+
+
                                             </div>
 
+                                        )}
+
+                                    </div>)
+                                }
+
+                            </div>
+
+
+                            <div className='details__drug-list'>
+
+
+                                {medData.map(med =>
+                                (<Link key={med.id}
+                                    className='details__drug-link'
+                                    to={`/search/${med.id}`}
+                                    state={{ medData, profileId }}>
+                                    <div className='details__drug-card' key={med.id}>
+
+                                        {/* {med.indications} */}
+                                        <div className='details__drug-name'>
+                                            {med.name}
 
                                         </div>
 
-                                    )}
-
-                                </div>)
-                            }
-
-                        </div>
+                                        <div className='details__drug-details'>
 
 
-                        <div className='details__drug-list'>
+                                            <h6 className="details__drug-subtitle">
+                                                ACTIVE INGREDIENT </h6>
+                                            <h6 className="details__drug-detail "> {med.active_ingredient}</h6>
 
-
-                            {medData.map(med =>
-                            (<Link key={med.id}
-                                className='details__drug-link'
-                                to={`/search/${med.id}`}
-                                state={{ medData, profileId }}>
-                                <div className='details__drug-card' key={med.id}>
-
-                                    {/* {med.indications} */}
-                                    <div className='details__drug-name'>
-                                        {med.name}
-
+                                        </div>
                                     </div>
-
-                                    <div className='details__drug-details'>
-
-
-                                        <h6 className="details__drug-subtitle">
-                                            ACTIVE INGREDIENT </h6>
-                                        <h6 className="details__drug-detail "> {med.active_ingredient}</h6>
-
-                                    </div>
-                                </div>
-                            </Link>)
-                            )}
+                                </Link>)
+                                )}
 
 
+                            </div>
                         </div>
-                    </div> 
                     </>
-            )}
+                )}
 
-                    <DeleteConfirmationModal
-                        isOpen={isModalOpen}
-                        onDeleteConfirm={handleDeleteConfirm}
-                        onCancel={handleCancel}
-                        itemId={currentCommentId}
-                    />
+            <DeleteConfirmationModal
+                isOpen={isModalOpen}
+                onDeleteConfirm={handleDeleteConfirm}
+                onCancel={handleCancel}
+                itemId={currentCommentId}
+            />
 
-                </div>
-       
+        </div>
+
     )
 }
 
-        // </div >
+// </div >
 
 
-    
+
 export default Details
