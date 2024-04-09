@@ -4,11 +4,11 @@ import { useOutletContext } from 'react-router-dom';
 
 
 function SearchPage() {
-    const { filteredMeds } = useOutletContext();
+    const { filteredMeds,profileId } = useOutletContext();
 
     return (
         <div className="search__list">
-            <DrugList filteredMeds={filteredMeds} />
+            <DrugList filteredMeds={filteredMeds} profileId={profileId} />
         </div>
     )
 }

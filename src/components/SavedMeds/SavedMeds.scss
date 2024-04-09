@@ -1,0 +1,87 @@
+@use '../../styles/partials/fonts.scss' as *;
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/variables.scss' as *;
+
+.saved {
+    
+    &-meds {
+        padding: 2rem 3rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+       
+        & a {
+            width: fit-content;
+            display: flex;
+        }
+
+    }
+    &-med__bookmark {
+        color: $rx-burnt-orange;
+        font-size: 1.25rem;
+        padding: 0;
+        position: relative;
+        left:1rem;
+        top: -1rem;
+        z-index: 20;
+
+    }
+
+    &-med__card {
+        // width: 100%;
+        background-color: white;
+        margin: 0 1.25rem;
+        margin-bottom: 1.5rem;
+        // border: 1px solid red;
+        background-color: white;
+        padding: 2rem 1.5rem;
+        padding-bottom: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+        border-radius: 10px;
+        width: fit-content;
+        // height: 100%;
+
+
+    }
+
+    &-med__name {
+        display: flex;
+        font-size: 1rem;
+        border-bottom: 1px solid $rx-orange;
+        padding-bottom: 1rem;
+
+        & img {
+            width: 1.5rem;
+            // padding: 1rem 0.5rem;
+            object-fit: contain;
+            margin-right: 1rem;
+
+        }
+    }
+
+    &-med__icon {
+
+        // background-color: $rx-orange;
+        // background-position: ;
+        & path {
+            fill: black
+        }
+    }
+
+    &-med__details {
+        font-weight: 600;
+
+        & .saved-med__detail {
+            font-weight: 600;
+        }
+
+        & p {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+    }
+
+}

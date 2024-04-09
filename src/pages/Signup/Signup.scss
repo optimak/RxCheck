@@ -1,17 +1,38 @@
-
 @use '../../styles/partials/fonts.scss' as *;
 @use '../../styles/partials/mixins.scss' as *;
 @use '../../styles/partials/variables.scss' as *;
 
 
 .signup-page {
-    background-color:#FFF3E1;
+    background-color: #FFF3E1;
+    background-color: #FFF2ED;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    position: relative;
+    // top: -3rem;
+    z-index: 200;
+    margin-top: 5rem;
+    padding-bottom: 8rem;
+
+
+    & a {
+        color: $rx-blue ;
+        margin-left: 0.7rem;
+
+        &:hover {
+            color: $rx-orange;
+        }
+
+    }
+
+    & p {
+        padding-top: 0.5rem;
+        display: flex;
+    }
 }
 
 .signup {
@@ -37,17 +58,21 @@
     &__button {
         margin-top: 1rem;
 
-        background-color: #1358db;
-        border: 1px solid #1358db;
+        background-color: $rx-burnt-orange;
+        border: 1px solid $rx-burnt-orange;
         color: #fff;
         border-radius: 0.5rem;
         padding: 0.5rem;
         font-size: inherit;
         cursor: pointer;
         transition: background-color 0.15s;
+        font-size: 1.2rem;
+        font-weight: 600;
 
         &:hover {
-            background-color: #003fc2;
+            background-color: $rx-orange;
+            border-color: $rx-orange;
+
         }
     }
 
@@ -55,5 +80,25 @@
         border-left: 5px solid #ddd;
         padding: 0.75rem;
         margin-top: 2rem;
+        color: $rx-orange;
+    }
+
+    &__select {
+        margin: 1.25rem 0;
+        height: 36px;
+        border-radius: 0.5rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: transparent;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position-x: 95%;
+        background-position-y: 50%;
+        border: 0.5px solid $silver;
+        border-radius: 7px;
+        padding-left: 0.5rem;
+
+
     }
 }

@@ -13,6 +13,9 @@
 }
 
 body {
+  background-color: #FFF3E1;
+  background-color: #FFF2ED;
+
   margin: 0;
   font-family: "Poppins";
   -webkit-font-smoothing: antialiased;
@@ -21,7 +24,7 @@ body {
 
 main {
   // background-color: #fffaf9;
-  background-color: #FFF3E1;
+  // background-color: #FFF3E1;
   height: 100vh;
 }
 
@@ -33,7 +36,7 @@ h1 {
 a {
   text-decoration: inherit;
   color: inherit;
-  // $rx-blue;
+  // color: $rx-blue;
   font-weight: 600;
   display: flex;
   width: inherit;
