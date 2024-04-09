@@ -10,7 +10,7 @@ import './FindMeds.scss';
 import { useNavigate } from "react-router-dom";
 
 
-function FindMeds() {
+function FindMeds({userMeds}) {
     const [profile, setProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [failedAuth, setFailedAuth] = useState(false);

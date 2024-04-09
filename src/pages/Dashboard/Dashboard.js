@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import hero from "../../assets/icons/hero-nb.png";
 import SavedMeds from "../../components/SavedMeds/SavedMeds";
 
-function Dashboard() {
+function Dashboard({userMeds, deleteUserMed}) {
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [failedAuth, setFailedAuth] = useState(false);
@@ -156,15 +156,9 @@ function Dashboard() {
           // className="dashboard--sizing"
           > Your Pill Box </h2>
           <p>{`Here are the items in your pill box ${profile.full_name.split(" ")[0]}!`}</p>
-          <SavedMeds id={profile.id} />
+          <SavedMeds id={profile.id} userMeds={userMeds} deleteUserMed={deleteUserMed} />
           <div className="dashboard__profile">
             {/* <p> {profile.full_name}</p> */}
-            {/* <h2> Your information</h2>
-            <p>{profile.email}</p>
-            <p>{profile.age} years old</p>
-            <p>{profile.gender}</p>
-            <p>Pre-existing Condition: {profile.preexisting_conditions}</p> */}
-
 
           </div>
 

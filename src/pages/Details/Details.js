@@ -15,7 +15,7 @@ import CommentForm from '../../components/CommentForm/CommentForm';
 
 
 
-function Details() {
+function Details({userMeds,updateUserDrugs, deleteUserMed}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentCommentId, setCurrentCommentId] = useState(null);
     const { medId } = useParams()
@@ -23,12 +23,13 @@ function Details() {
     // const { filteredMeds } = location.state;
     const [comments, setComments] = useState([])
     const [isLoadingData, setIsLoadingData] = useState(true);
-    const [isLoadingUserMeds, setIsLoadingUserMeds] = useState(true);
+    // const [isLoadingUserMeds, setIsLoadingUserMeds] = useState(false);
 
     const [medData, setMedData] = useState([]);
     const [profileId, setProfileId] = useState(null);
     const { profile } = useOutletContext();
-    const [userMeds, setUserMeds] = useState([]);
+    // const [userMeds, setUserMeds] = useState([]);
+    // const [isSaved,setIsSaved] = useState()
 
 
     const preexistingConditionsKeywords =
@@ -69,27 +70,27 @@ function Details() {
     //     // setIsLoadingData(false);
     // };
 
-    const deleteUserMed = async (medId) => {
+    // const deleteUserMed = async (medId) => {
 
-        try {
-            const response = await axios.delete(`${baseUrl}users/${profileId}/meds/${medId}`)
-            // setProfile(response.data);
-            // setUserMeds(response.data)
-            console.log("deleted MEDS", response.data)
-        } catch (error) {
-            console.error(error);
-            // setFailedAuth(true);
-            console.log("NO DATA GOTTEN")
-        }
+    //     try {
+    //         const response = await axios.delete(`${baseUrl}users/${profileId}/meds/${medId}`)
+    //         // setProfile(response.data);
+    //         // setUserMeds(response.data)
+    //         console.log("deleted MEDS", response.data)
+    //     } catch (error) {
+    //         console.error(error);
+    //         // setFailedAuth(true);
+    //         console.log("NO DATA GOTTEN")
+    //     }
 
-        // setIsLoadingData(false);
-    };
+    //     // setIsLoadingData(false);
+    // };
     const addUserMed = async (medId) => {
         const savedMed = {
             medication_id: medId
         }
         try {
-            const response = await axios.post(`${baseUrl}users/${profileId}/meds/${medId}`)
+            const response = await axios.post(`${baseUrl}users/${profileId}/meds`,savedMed)
             // setProfile(response.data);
             // setUserMeds(response.data)
             console.log("saved MEDS", response.data)
@@ -194,6 +195,16 @@ function Details() {
         setIsModalOpen(false); // Close the modal
     };
 
+    const saveHandler = () => {
+        updateUserDrugs()
+        if (isSaved() === true){
+            deleteUserMed(med.id,profileId)
+        }else{
+            addUserMed(med.id)
+        }
+        return
+  
+    }
 
 
     useEffect(() => {
@@ -209,14 +220,16 @@ function Details() {
             setMedData(savedState.medData ?? savedState.filteredMeds)
         }
         // getUserMeds();
-        const userDrugs = JSON.parse(sessionStorage.getItem('userDrugs'));
-        setUserMeds(JSON.parse(sessionStorage.getItem('userDrugs')));
-        if (userDrugs) {
-            // Use savedState as needed
-            console.log("USER MEDS", userDrugs)
-            setIsLoadingUserMeds(false)
-            // setMedData(savedState.medData ?? savedState.filteredMeds)
-        }
+
+
+        // const userDrugs = JSON.parse(sessionStorage.getItem('userDrugs'));
+        // setUserMeds(JSON.parse(sessionStorage.getItem('userDrugs')));
+        // if (userDrugs) {
+        //     // Use savedState as needed
+        //     console.log("USER MEDS", userDrugs)
+        //     setIsLoadingUserMeds(false)
+        //     // setMedData(savedState.medData ?? savedState.filteredMeds)
+        // }
 
     }, []);
 
@@ -234,11 +247,11 @@ function Details() {
             // setProfile(location.state.profileId)
 
 
-        } else if (savedState.filteredMeds) {
+        } else if (savedState && savedState.filteredMeds) {
             setMedData(savedState.filteredMeds);
             setIsLoadingData(false);
             // setProfile(savedState.profileId)
-        } else if (savedState.medData) {
+        } else if (savedState && savedState.medData) {
             setMedData(savedState.medData);
             setIsLoadingData(false);
             // setProfile(savedState.profileId)
@@ -266,43 +279,35 @@ function Details() {
         return userMeds.some(userMed =>
             userMed.user_id === profileId && userMed.medication_id === med.id)
     }
-    console.log(isLoadingData,isLoadingUserMeds)
+    console.log(isLoadingData)
+    // ,isLoadingUserMeds)
+   
+
 
     return (
         <div className='details'>
             {isLoadingData 
-            || isLoadingUserMeds
+            // || isLoadingUserMeds
              ? (
                 // <p> 
                     <img src={pill} 
                 style={{ width: '100px', height: '100px', margin: '0 auto' }}
                 alt='pill' />
-                 //{/* Loading...</p> */}
             ) : (
 
                 <>
                     <div className='details__all'>
-                        {/* {isLoadingData || (userMeds.length === 0) ? (
-                    <p>Loading...</p>
-                ) : ( */}
+             
                         <div className='details__med'>
 
                             <div className='details__med-name'>
                                 <img src={pill} alt='pill' />
                                 <h3>{med.name}</h3>
-                                <div className='saved-icons'>
+                                <div className='saved-icons' onClick={saveHandler}>
                                     {isSaved()
-                                        ? (<div class="saved-icon">&#9733; </div>) : (<div class="saved-icon--not">&#9734;</div>)
+                                        ? (<div className="saved-icon">&#9733; </div>) : (<div className="saved-icon--not">&#9734;</div>)
                                     }
-                                    {/* {`${JSON.stringify(userMeds)}`} */}
-                                    {/* {`${isSaved()}`} */}
-
-                                    {/* {`${userMeds.some(userMed =>
-                                    userMed.user_id === profileId && userMed.medication_id === med.id)},${userMeds[0].id}`} */}
-                                    {/* <div class="saved-icon">&#9733;</div>  <div class="saved-icon--not">&#9734;</div> */}
-                                    {/* <div class="saved-icon">&#9733;</div> */}
-                                    {/* //Filled Star */}
-                                    {/* <div class="bookmark">&#9734;</div> */}
+                                
                                 </div>
                             </div>
                             <div className='details__med-divider'> </div>

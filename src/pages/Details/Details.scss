@@ -348,12 +348,14 @@
         // font-size: 0.53rem;
     }
 }
+
 .saved-icon {
     color: $rx-orange;
     font-size: 2rem;
     position: relative;
     left: 80%;
     top: 0.7rem;
+
     &--not {
         // color: white;
         font-size: 2rem;
@@ -362,15 +364,20 @@
         top: 0.7rem;
         filter: invert(100%) sepia(90%) saturate(900%) hue-rotate(298deg) brightness(95%) contrast(100%);
 
+        &:hover {
+            cursor: pointer;
+        }
 
     }
-    &s{
+
+    &s {
         position: absolute;
-        left:  59%;
+        left: 59%;
         // overflow: hidden;
     }
+
     &:hover {
         cursor: pointer;
-        
+
     }
 }

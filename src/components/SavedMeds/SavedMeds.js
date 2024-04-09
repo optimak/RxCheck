@@ -8,9 +8,9 @@ import saveIcon from '../../assets/icons/save.svg'
 
 
 
-function SavedMeds({ id }) {
+function SavedMeds({ id, userMeds, deleteUserMed }) {
 
-    const [userMeds, setUserMeds] = useState([]);
+    // const [userMeds, setUserMeds] = useState([]);
     const [filteredMeds, setFilteredMeds] = useState([]);
 
     const getUserMeds = async () => {
@@ -18,9 +18,9 @@ function SavedMeds({ id }) {
         try {
             const response = await axios.get(`${baseUrl}users/${id}/meds`)
             // setProfile(response.data);
-            setUserMeds(response.data);
+            // setUserMeds(response.data);
             setFilteredMeds(response.data)
-            sessionStorage.setItem('userDrugs', JSON.stringify(response.data));
+            // sessionStorage.setItem('userDrugs', JSON.stringify(response.data));
 
 
             console.log("Obtaiined MEDS", response.data)
@@ -52,7 +52,11 @@ function SavedMeds({ id }) {
         getUserMeds();
 
     }, [])
-
+    const unSaveMed = (event,medId) => {
+        event.preventDefault()
+        event.stopPropagation(); 
+        deleteUserMed(medId, id);
+    }
 
     const profileId = id;
 
@@ -60,7 +64,7 @@ function SavedMeds({ id }) {
     return (
         <div className='saved-meds'>
             {userMeds.map(med =>
-            (<Link
+            (<Link key={med.id}
                 className='saved-med__link'
                 to={`/search/${med.medication_id}`}
                 state={{
@@ -74,7 +78,7 @@ function SavedMeds({ id }) {
                         <img src={pill} alt='pill' />
                         <div>{med.name}</div>
                         {/* <img className='saved-med__icon' src={saveIcon} alt='pill' /> */}
-                        <div class="bookmark">&#9733;</div>
+                        <div onClick={(event)=> unSaveMed(event,med.id)} className="saved-med__bookmark">&#9733;</div>
                         {/* //Filled Star */}
                         {/* <div class="bookmark">&#9734;</div> */}
 
