@@ -18,7 +18,7 @@ function App() {
   const [updateUserMeds, setUpdateUserMeds] = useState(true);
 
   const getUserMeds = async () => {
-
+    console.log(baseUrl)
     try {
       const id = JSON.parse(sessionStorage.getItem('profileId'));
       const response = await axios.get(`${baseUrl}users/${id}/meds`)
@@ -37,22 +37,22 @@ function App() {
 
     // setIsLoadingData(false);
   };
-  const deleteUserMed = async (medId,profileId) => {
+  const deleteUserMed = async (medId, profileId) => {
 
     try {
-        const response = await axios.delete(`${baseUrl}users/${profileId}/meds/${medId}`)
-        // setProfile(response.data);
-        // setUserMeds(response.data)
-        setUpdateUserMeds(!updateUserMeds);
-        console.log("deleted MEDS", response.data)
+      const response = await axios.delete(`${baseUrl}users/${profileId}/meds/${medId}`)
+      // setProfile(response.data);
+      // setUserMeds(response.data)
+      setUpdateUserMeds(!updateUserMeds);
+      console.log("deleted MEDS", response.data)
     } catch (error) {
-        console.error(error);
-        // setFailedAuth(true);
-        console.log("NO DATA GOTTEN")
+      console.error(error);
+      // setFailedAuth(true);
+      console.log("NO DATA GOTTEN")
     }
 
     // setIsLoadingData(false);
-};
+  };
   const updateUserDrugs = () => {
     // if (userMeds.length !== newValue.length) {
 
@@ -79,7 +79,7 @@ function App() {
           <Route path="/search" element={<><Header /> <FindMeds userMeds={userMeds} /> </>} >
             <Route path="" element={<SearchPage />} />
 
-            <Route path=":medId" element={<Details userMeds={userMeds} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed}/>} />
+            <Route path=":medId" element={<Details userMeds={userMeds} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} />} />
           </Route>
           <Route path="*" element={<><Header /><Dashboard /> </>} />
 
