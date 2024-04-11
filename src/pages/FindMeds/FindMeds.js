@@ -1,16 +1,14 @@
 import "./FindMeds.scss";
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, Outlet } from "react-router-dom";
 import { baseUrl } from "../../consts";
 import axios from "axios";
-import InputField from "../../components/InputField/InputField";
 import SearchBar from "../../components/SearchBar/SearchBar";
-// import SearchPage from "../SearchPage/SearchPage";
 import './FindMeds.scss';
 import { useNavigate } from "react-router-dom";
 
 
-function FindMeds({userMeds}) {
+function FindMeds({ userMeds }) {
     const [profile, setProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [failedAuth, setFailedAuth] = useState(false);
@@ -39,11 +37,6 @@ function FindMeds({userMeds}) {
         setIsLoading(false);
     };
 
-    const logout = () => {
-        sessionStorage.removeItem("token");
-        setFailedAuth(true);
-        setProfile(null);
-    };
 
 
 
@@ -53,13 +46,10 @@ function FindMeds({userMeds}) {
 
         try {
             const response = await axios.get(`${baseUrl}medications`)
-            // setProfile(response.data);
             setMedData(response.data)
-            console.log("Obtaiined DATAA", response.data)
+
         } catch (error) {
             console.error(error);
-            // setFailedAuth(true);
-            console.log("NO DATA GOTTEN")
         }
 
         setIsLoadingData(false);
@@ -76,6 +66,11 @@ function FindMeds({userMeds}) {
     useEffect(() => {
         getMeds();
     }, [])
+    
+    const filterMeds = useCallback((filteredData) => {
+        setFilteredMeds(filteredData);
+
+    },[]);
 
     if (failedAuth) {
         return (
@@ -90,9 +85,8 @@ function FindMeds({userMeds}) {
             </main>
         )
     }
-console.log("FILTERED",filteredMeds)
-//below is valid 
-    const profileId = profile.id; 
+    //below is valid 
+    const profileId = profile.id;
 
 
 
@@ -100,32 +94,15 @@ console.log("FILTERED",filteredMeds)
 
 
 
-    const filterMeds = (filteredData) => {
-        setFilteredMeds(filteredData);
-        
-    };
+   
     return (
         <main className="search">
-            {/* <div className="search__message">
-                <p>Welcome back, {profile.full_name}</p>
-
-                <h2>My Profile</h2>
-                <p>{profile.age}</p>
-                <p>{profile.email}</p>
-
-                <button onClick={logout}>
-                    Log out
-                </button>
-
-            </div> */}
+         
 
             <h1 className="search__title">Find Medications</h1>
             <div className="search__options">
                 <Link className="search__options-link " to='/search'> <div> Search</div></Link>
-                {/* <Link className="search__options-link " to={`/search/${medData[0].id}`} state={{ filteredMeds, profileId }}> <div> List</div></Link> */}
                 <Link className="search__options-link " to={`/search/${medData[0].id}`} state={{ filteredMeds, profileId }}> <div> List</div></Link>
-
-                {/* <div> List</div> */}
             </div>
 
             <div>
@@ -133,7 +110,7 @@ console.log("FILTERED",filteredMeds)
             </div>
 
 
-            <Outlet context={{ filteredMeds,profileId,profile }} />
+            <Outlet context={{ filteredMeds, profileId, profile }} />
 
 
         </main>

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams, useLocation, useOutletContext } from 'react-router-dom'
 import DeleteConfirmationModal from '../../components/DeleteConfirmationModal/DeleteConfirmationModal'
-import './Details.scss';
+import CommentForm from '../../components/CommentForm/CommentForm';
 import axios from 'axios';
 import { baseUrl } from "../../consts";
 import pill from '../../assets/icons/pill.png'
 import warniing from '../../assets/icons/warniing.png'
 import deleteIcon from '../../assets/icons/delete.svg'
+import './Details.scss';
 
-import CommentForm from '../../components/CommentForm/CommentForm';
 
 
 
@@ -20,18 +20,15 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
     const [currentCommentId, setCurrentCommentId] = useState(null);
     const { medId } = useParams()
     const location = useLocation();
-    // const { filteredMeds } = location.state;
     const [comments, setComments] = useState([])
     const [isLoadingData, setIsLoadingData] = useState(true);
-    // const [isLoadingUserMeds, setIsLoadingUserMeds] = useState(false);
 
     const [medData, setMedData] = useState([]);
-    const [profileId, setProfileId] = useState(null);
+    // const [profileId, setProfileId] = useState(null);
     const { profile } = useOutletContext();
-    // const [userMeds, setUserMeds] = useState([]);
-    // const [isSaved,setIsSaved] = useState()
+    const [isSavedMed, setIsSavedMed] = useState(null)
 
-
+    const profileId = profile.id;
     const preexistingConditionsKeywords =
         [
             ["Severe kidney disease", "Renal impairment",
@@ -51,123 +48,47 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
 
         ];
 
-    // const getUserMeds = async () => {
-
-    //     try {
-    //         const response = await axios.get(`${baseUrl}users/${profileId}/meds`)
-    //         // setProfile(response.data);
-    //         setUserMeds(response.data);
-    //         // setFilteredMeds(response.data)
-    //         setIsLoadingUserMeds(false)
-
-    //         console.log("Obtaiined MEDS", response.data)
-    //     } catch (error) {
-    //         console.error(error);
-    //         // setFailedAuth(true);
-    //         console.log("NO DATA GOTTEN")
-    //     }
-
-    //     // setIsLoadingData(false);
-    // };
-
-    // const deleteUserMed = async (medId) => {
-
-    //     try {
-    //         const response = await axios.delete(`${baseUrl}users/${profileId}/meds/${medId}`)
-    //         // setProfile(response.data);
-    //         // setUserMeds(response.data)
-    //         console.log("deleted MEDS", response.data)
-    //     } catch (error) {
-    //         console.error(error);
-    //         // setFailedAuth(true);
-    //         console.log("NO DATA GOTTEN")
-    //     }
-
-    //     // setIsLoadingData(false);
-    // };
-    const addUserMed = async (medId) => {
-        const savedMed = {
-            medication_id: medId
-        }
-        try {
-            const response = await axios.post(`${baseUrl}users/${profileId}/meds`, savedMed)
-            // setProfile(response.data);
-            // setUserMeds(response.data)
-            console.log("saved MEDS", response.data)
-        } catch (error) {
-            console.error(error);
-            // setFailedAuth(true);
-            console.log("NO DATA GOTTEN")
-        }
-
-        // setIsLoadingData(false);
-    };
 
 
+
+    //check pre-existing conditions
     const checkConditions = () => {
         const index = preexistingConditions.indexOf(profile.preexisting_conditions);
-        // if (!index){
-        //     return false
-        // }
+
         const keywords = preexistingConditionsKeywords[index];
-        // filtered = filtered.filter(item =>
-        //     item.indications && keywords.some(keyword =>
-        //         item.indications.toLowerCase().includes(keyword.toLowerCase())
-        //     )
-        // );
+
         return med.contra_indications && keywords.some(keyword =>
             med.contra_indications.toLowerCase().includes(keyword.toLowerCase())
         )
     }
-    // console.log(checkConditions())
 
 
 
 
-    console.log(profile, "PROFILE")
 
 
-    const getMedComments = async () => {
-        try {
-            const response = await axios.get(`${baseUrl}comments/${medId}`);
-            console.log("RESPONSE", comments)
-            if (response.data.length > 1) {
-                let comments = response.data;
-                comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-                setComments(comments)
 
-            } else {
-                setComments(response.data)
-
-            }
-
-        } catch (error) {
-            console.error(error);
-            console.log("NO COMMENTS GOTTEN")
-
-        }
-    }
     const getMeds = async () => {
 
         try {
             const response = await axios.get(`${baseUrl}medications`)
-            // setProfile(response.data);
             setMedData(response.data)
-            console.log("Obtaiined DATAA", response.data)
             setIsLoadingData(false);
 
         } catch (error) {
             console.error(error);
-            // setFailedAuth(true);
-            console.log("NO DATA GOTTEN")
+
         }
 
     };
+
+
+    //Comment section functions
+
     const deleteComment = async (commentId) => {
 
         try {
             await axios.delete(`${baseUrl}comments/${commentId}`)
-            console.log("deleted")
 
         } catch (error) {
             console.error(error);
@@ -177,16 +98,13 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
     const handleDeleteClick = (commentId) => {
         setIsModalOpen(true);
         setCurrentCommentId(commentId);
-        ///
 
 
     };
+
     const handleDeleteConfirm = (commentId) => {
-        // Logic to delete the comment, e.g., remove it from the state
-        // setComments(comments.filter(comment => comment.id !== commentId));
+
         deleteComment(commentId)
-        // Logic to delete the comment, e.g., an API call to your backend
-        console.log(`Deleting comment with ID: ${commentId}`);
         window.location.reload();
         setIsModalOpen(false); // Close the modal
     };
@@ -195,46 +113,21 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
         setIsModalOpen(false); // Close the modal
     };
 
-    const saveHandler = () => {
-        updateUserDrugs()
-        if (isSaved() === true) {
-            deleteUserMed(med.id, profileId)
-        } else {
-            addUserMed(med.id)
-        }
-        return
-
-    }
 
 
+    //useEffects
     useEffect(() => {
         sessionStorage.setItem('myPageState', JSON.stringify(location.state));
     }, [location.state]);
 
     useEffect(() => {
         const savedState = JSON.parse(sessionStorage.getItem('myPageState'));
-        setProfileId(JSON.parse(sessionStorage.getItem('profileId')));
         if (savedState) {
-            // Use savedState as needed
-            console.log("SAVED STATE")
             setMedData(savedState.medData ?? savedState.filteredMeds)
         }
-        // getUserMeds();
 
-
-        // const userDrugs = JSON.parse(sessionStorage.getItem('userDrugs'));
-        // setUserMeds(JSON.parse(sessionStorage.getItem('userDrugs')));
-        // if (userDrugs) {
-        //     // Use savedState as needed
-        //     console.log("USER MEDS", userDrugs)
-        //     setIsLoadingUserMeds(false)
-        //     // setMedData(savedState.medData ?? savedState.filteredMeds)
-        // }
 
     }, []);
-
-
-
 
 
     useEffect(() => {
@@ -244,52 +137,95 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
         if (location.state && location.state.filteredMeds) {
             setMedData(location.state.filteredMeds);
             setIsLoadingData(false);
-            // setProfile(location.state.profileId)
 
 
         } else if (savedState && savedState.filteredMeds) {
             setMedData(savedState.filteredMeds);
             setIsLoadingData(false);
-            // setProfile(savedState.profileId)
         } else if (savedState && savedState.medData) {
             setMedData(savedState.medData);
             setIsLoadingData(false);
-            // setProfile(savedState.profileId)
         }
         else {
             getMeds();
         }
+
+        const getMedComments = async () => {
+            try {
+                const response = await axios.get(`${baseUrl}comments/${medId}`);
+                if (response.data.length > 1) {
+                    let comments = response.data;
+                    comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    setComments(comments)
+
+                } else {
+                    setComments(response.data)
+
+                }
+
+            } catch (error) {
+                console.error(error);
+
+            }
+        }
+
         getMedComments();
-        // getUserMeds();
 
     }, [location.state, medId]);
 
+    useEffect(() => {
+        if (userMeds.length === 0) {
+            setIsSavedMed(false)
+        }
+        setIsSavedMed(userMeds.some(userMed =>
+            userMed.user_id === profile.id && userMed.medication_id === Number(medId)))
+        
+    }, [medId, profile, userMeds])
 
-    console.log("dets", medId, comments, medData, profileId, location.state)
     let med = medData.find(drug => drug.id === Number(medId));
     if (!med && location.state && location.state.filteredMeds) {
         med = location.state.filteredMeds[0]
     }
-    // console.log(checkConditions())
-    // const profileId = profile.id; 
-    const isSaved = () => {
-        if (userMeds.length === 0) {
-            return false
+
+    //save drug functions
+
+    const addUserMed = async (medId) => {
+        const savedMed = {
+            medication_id: medId
         }
-        return userMeds.some(userMed =>
-            userMed.user_id === profileId && userMed.medication_id === med.id)
-    }
-    console.log(isLoadingData)
-    // ,isLoadingUserMeds)
+        try {
+            await axios.post(`${baseUrl}users/${profileId}/meds`, savedMed)
+
+        } catch (error) {
+            console.error(error);
+
+        }
+
+    };
+
+    const saveHandler = async () => {
+        const newIsSavedMed = !isSavedMed;
+        setIsSavedMed(newIsSavedMed);
+    
+        try {
+            if (newIsSavedMed) {
+                await addUserMed(med.id);
+            } else {
+                await deleteUserMed(med.id, profileId);
+            }
+            updateUserDrugs(); 
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
 
 
     return (
         <div className='details'>
             {isLoadingData
-                // || isLoadingUserMeds
                 ? (
-                    // <p> 
                     <img src={pill}
                         style={{ width: '100px', height: '100px', margin: '0 auto' }}
                         alt='pill' />
@@ -304,7 +240,7 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
                                     <img src={pill} alt='pill' />
                                     <h3>{med.name}</h3>
                                     <div className='saved-icons' onClick={saveHandler}>
-                                        {isSaved()
+                                        {isSavedMed
                                             ? (<div className="saved-icon">&#9733; </div>) : (<div className="saved-icon--not">&#9734;</div>)
                                         }
 
@@ -371,7 +307,6 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
                                                     <div className='details__med-comment-bottom'>
                                                         <p>  {comment.content} </p>
                                                         {comment.user_id === profileId && (
-                                                            // <button onClick={() => handleDelete(comment.id)}>Delete</button>
                                                             <img src={deleteIcon} alt='delete' onClick={() => handleDeleteClick(comment.id)} />
                                                         )}
                                                     </div>
@@ -398,7 +333,6 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
                                     state={{ medData, profileId }}>
                                     <div className='details__drug-card' key={med.id}>
 
-                                        {/* {med.indications} */}
                                         <div className='details__drug-name'>
                                             {med.name}
 
@@ -434,7 +368,6 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
     )
 }
 
-// </div >
 
 
 

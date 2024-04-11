@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import logo from "../../assets/logo/logo-no-background.png";
 import './Header.scss';
@@ -11,7 +11,6 @@ import axios from "axios";
 function Header() {
     const [profile, setProfile] = useState(null);
     const [failedAuth, setFailedAuth] = useState(false);
-    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
 
@@ -34,7 +33,6 @@ function Header() {
         setIsLoading(false);
     };
     const logout = () => {
-        // sessionStorage.removeItem("token");
 
         sessionStorage.clear();
         setFailedAuth(true);
@@ -63,59 +61,79 @@ function Header() {
     }
 
 
-    if (failedAuth) {
+    if (failedAuth || !profile) {
         return (<div></div>)
     }
 
 
     return (
-        <div className='header'>
-            <div className='header__left'>
-                <Link to='/' >
-                    {/* <div className="header__logo" ></div> */}
-                    <img className="header__logo" src={logo} alt='logo' />
-                </Link>
+        <>
+            <div className='header'>
 
-                <div className='header__functions'>
+                <div className='header__inner'>
                     <Link to='/' >
-                        <h3
-                            className={
-                                !isActiveSearch
-                                    ? "header__text header__text--active"
-                                    : "header__text"
-                            }
-                        >
-                            Home
-                        </h3>
-
+                        <img className="header__logo" src={logo} alt='logo' />
                     </Link>
+                    <nav>
+                        <ul class="header-nav">
+                            <li>
+                                <Link to='/' >
+                                    <h3
+                                        className={
+                                            !isActiveSearch
+                                                ? "header__text header__text--active"
+                                                : "header__text"
+                                        }
+                                    >
+                                        Home
+                                    </h3>
 
-                    <Link to='/search' >
-                        <h3
-                            className={
-                                isActiveSearch
-                                    ? "header__text header__text--active"
-                                    : "header__text"
-                            }>
-                            Search
-                        </h3>
+                                </Link>
 
-                    </Link>
+                            </li>
+                            <li>
+                                <Link to='/search' >
+                                    <h3
+                                        className={
+                                            isActiveSearch
+                                                ? "header__text header__text--active"
+                                                : "header__text"
+                                        }>
+                                        Search
+                                    </h3>
+
+                                </Link>
+
+                            </li>
+                        </ul>
+                        <ul class="header-nav">
+                            <li>
+                                <Link to='/login' >
+                                    <h3 className='header__text header__logout' onClick={logout}>
+                                        LOG OUT
+                                    </h3>
+
+                                </Link>
+
+                            </li>
+                        </ul>
+                    </nav>
+
                 </div>
+                {/* <div className='header__logout'>
+                    <Link to='/login' >
+                        <h3 className='header__text' onClick={logout}>
+                            LOG OUT
+                        </h3>
+
+                    </Link>
+
+
+                </div> */}
+
+
             </div>
-            <div className='header__logout'>
-                <Link to='/login' >
-                    <h3 className='header__text' onClick={logout}>
-                        LOG OUT
-                    </h3>
-
-                </Link>
-
-
-            </div>
-
-
-        </div>
+        </>
     )
 
 }

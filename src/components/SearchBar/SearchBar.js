@@ -4,29 +4,50 @@ import "./SearchBar.scss"
 
 function SearchBar({ data, onFilter }) {
     const [searchQuery, setSearchQuery] = useState('');
-    // const [sortBy, setSortBy] = useState('');
     const [filterByDrugFunction, setFilterByDrugFunction] = useState('');
-    console.log(data, "DDD")
-    const drugFunctionKeywords =
-        [["diabetes"], ["heart ", "blood pressure"],
-        ["depression", "anxiety", "nerve", "adhd"], ["pain", "inflammation"], ["gerd", "inflammation"]]
 
 
 
+
+   
 
     useEffect(() => {
-        filterData();
-        // handleSearchClick()
+        const filterData = () => {
+            const drugFunctionKeywords =
+                [["diabetes"], ["heart ", "blood pressure"],
+                ["depression", "anxiety", "nerve", "adhd"], ["pain", "inflammation"], ["gerd", "inflammation"]]
+            let filtered = data.filter(item =>
+                item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                item.active_ingredient.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                item.indications.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+    
+            if (filterByDrugFunction) {
+                let keywords = drugFunctionKeywords[Number(filterByDrugFunction)];
+                filtered = filtered.filter(item =>
+                    item.indications && keywords.some(keyword =>
+                        item.indications.toLowerCase().includes(keyword.toLowerCase())
+                    )
+                );
+    
+            }
+    
+    
+    
+            onFilter(filtered);
+    
+    
+        };
+        filterData()
 
-    }, [searchQuery, filterByDrugFunction]);
+    },[data, filterByDrugFunction, onFilter,searchQuery]);
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
+        // filterData();
     };
 
-    // const handleSortChange = (event) => {
-    //     setSortBy(event.target.value);
-    // };
+
 
 
     const handleFilterByDrugFunctionChange = (event) => {
@@ -34,33 +55,11 @@ function SearchBar({ data, onFilter }) {
     };
 
     const handleSearchClick = () => {
-        filterData();
+
+        // filterData();
     };
 
-    const filterData = () => {
-        let filtered = data.filter(item =>
-            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.active_ingredient.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.indications.toLowerCase().includes(searchQuery.toLowerCase())
-        );
 
-        if (filterByDrugFunction) {
-            let keywords = drugFunctionKeywords[Number(filterByDrugFunction)];
-            filtered = filtered.filter(item =>
-                item.indications && keywords.some(keyword =>
-                    item.indications.toLowerCase().includes(keyword.toLowerCase())
-                )
-            );
-            
-        }
-
-
-
-        onFilter(filtered);
-
-        console.log(data)
-        console.log(filtered)
-    }
 
 
     return (

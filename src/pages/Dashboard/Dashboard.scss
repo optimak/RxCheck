@@ -5,6 +5,10 @@
 .dashboard {
     padding-top: 58px;
 
+    &__message {
+        width: 100vw;
+    }
+
     &__hero {
         background-color: white;
         width: 100vw; ///check below component
@@ -19,9 +23,22 @@
             margin-bottom: 1rem;
         }
 
-        &-styler {
+        &-top {
             display: flex;
             align-items: center;
+        }
+
+        &-styler {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            // position: relative;
+            width: 71.88rem;
+            // width: calc($desktop-breakpoint * 0.77);
+
+            left: calc((100vw - 1150px) / 9002);
+            // overflow: hidden;
 
         }
 
@@ -29,13 +46,14 @@
             padding-left: 6rem;
             text-align: left;
             padding-top: 2rem;
+            width: 39.63rem;
         }
 
         &-img {
-            width: 70%;
+            width: 32.275rem;
             height: auto;
-            position: relative;
-            top: 2rem;
+            // position: relative;
+            // top: 2rem;
         }
 
         &-search {
@@ -68,9 +86,9 @@
             margin-right: 0.25rem;
             width: 140px;
             margin-right: 3rem;
-            position: relative;
-            top: -5rem;
-            left: 2rem;
+            // position: relative;
+            // top: -5rem;
+            // left: 2rem;
 
             &:hover {
                 border-color: $rx-burnt-orange;
@@ -83,15 +101,18 @@
         &-link {
             width: 140px;
             margin-right: 3rem;
-            position: relative;
-            top: -5rem;
-            left: 2rem;
+            // position: relative;
+            // top: -5rem;
+            // left: 2rem;
         }
 
         &-actions {
             display: flex;
             width: 90%;
             justify-content: flex-start;
+            position: relative;
+            top: -2.8rem;
+            left: 2.4rem;
         }
     }
 
@@ -120,12 +141,14 @@
 
         & ul {
             display: flex;
-            padding: 2rem 3rem;
+            padding:2rem 0rem 4rem 3rem;
             list-style-type: none;
             // text-align: left;
-            width: 90%;
+            width: 1160px;
             // height: 110%;
             padding-left: 4rem;
+            position: relative;
+            left: calc((100vw - 1200px) / 9002);
 
             & div {
                 text-align: left;
@@ -147,7 +170,7 @@
 
             & p {
                 font-size: 0.8rem;
-                padding:1.5rem 0 0.5rem;
+                padding: 1.5rem 0 0.5rem;
                 // margin-top: 5rem;
                 // text-align: ;
             }
@@ -162,6 +185,7 @@
 
         }
     }
+
     &__saved {
         & h2 {
             padding: 3rem 0 1rem;
