@@ -1,6 +1,5 @@
 import './CommentForm.scss';
 import defaultImage from "../../assets/icons/avatar.png";
-// import commentIcon from "../../assets/images/icons/add_comment.svg";
 
 import { baseUrl } from "../../consts";
 import axios from 'axios';
@@ -12,18 +11,14 @@ export default function CommentForm({medId, profileId}) {
         event.preventDefault();
     
         try {
-          const response = await axios.post(`${baseUrl}comments/${medId}`, {
+          await axios.post(`${baseUrl}comments/${medId}`, {
             user_id: profileId,
             medication_id: medId,
             content: event.target.comment.value,
           });
-      
-        //   sessionStorage.setItem("token", response.data.token);
-        //   navigate("/");
         window.location.reload();
 
         } catch (error) {
-        //   setError(error.response.data);
         console.log(error)
         }
       };

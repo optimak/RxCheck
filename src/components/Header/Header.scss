@@ -8,21 +8,35 @@
     justify-content: space-between;
     width: 100vw;
     position: fixed;
-    // border-bottom: 0.5px solid $silver;
     box-shadow: 1px 2px 5px rgba(91, 30, 2, 0.1);
     z-index: 100;
-    // padding-left:10vw;
-    padding-right: 5vw;
+    
 
-    &__left {
+    & nav {
         display: flex;
-        // justify-content: space-between;
-        width: 50%;
+        justify-content: space-between;
+        width: 68vw;
+    }
+
+    &-nav {
+        list-style-type: none;
+
+    }
+
+    & ul {
+        display: flex;
+    }
+
+    &__inner {
+        display: flex;
+        position: relative;
+        width: calc($desktop-breakpoint * 0.77);
+        left: calc((100vw - ($desktop-breakpoint * 0.77))/2);
+
 
         &>a {
-            width: 120px;
-            // height: 50px;
-            margin-right: 45%;
+            width: 129px;
+            margin-right: 2.8rem;
 
         }
     }
@@ -30,41 +44,26 @@
 
 
     &__logo {
-        // width: 100%;
         position: relative;
-        left: calc((100vw - 1100px)/2);
-    }
-
-
-    &__logo {
         width: 129px;
         margin: 1rem;
-        // height: 50px;
-        // width: 50px;
-        // height: 50px;
-        // background-image: url("../../assets/logo/logo-no-background.png");
-        // object-fit: fill;
-        // background-position: center;
-        // background-size: 50px 50px;
-        // background-repeat: no-repeat;
-        // border-radius: 25px;
+        margin-left: 0rem;
 
     }
+
+
 
     &__functions {
         display: flex;
         width: 50%;
         align-items: center;
         position: relative;
-        // left: calc((100vw - 1110px)/99992);
-
-        // justify-content: space-evenly;
+       
         & a {
             justify-content: center;
-            // margin: 0 auto;
+            font-weight: 400;
             margin: 0 0.05rem;
             width: inherit;
-            // border-bottom: 5px solid $rx-orange;
             height: inherit;
 
 
@@ -77,13 +76,15 @@
         height: 100%;
         display: flex;
         padding-bottom: 1rem;
+        font-weight: 400;
 
         margin: 0;
         position: relative;
-        top: 8px;
+        top: 14px;
 
         &--active {
             border-bottom: 2px solid $rx-orange;
+            font-weight: 600;
         }
 
     }
@@ -106,6 +107,5 @@
     margin: 0 auto;
 
     & a {
-        // margin: inherit;
     }
 }

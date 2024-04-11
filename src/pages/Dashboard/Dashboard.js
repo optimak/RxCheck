@@ -7,23 +7,20 @@ import { useNavigate } from "react-router-dom";
 import hero from "../../assets/icons/hero-nb.png";
 import SavedMeds from "../../components/SavedMeds/SavedMeds";
 
-function Dashboard({userMeds, deleteUserMed}) {
+function Dashboard({ userMeds, deleteUserMed }) {
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [failedAuth, setFailedAuth] = useState(false);
   const navigate = useNavigate();
 
 
-  // import { useRef } from react;
 
   const savedSection = useRef(null);
 
   const scrollTo = () => {
     window.scrollTo({ top: savedSection.current.offsetTop, behavior: 'smooth', });
   }
-  {/* <button className="link" onClick={scrollTo}> About Us </button>
 
-<div className="about" ref={aboutSection}> <h2>About Us</h2> </div>  */}
 
   const getProfile = async () => {
     const token = sessionStorage.getItem("token");
@@ -45,11 +42,7 @@ function Dashboard({userMeds, deleteUserMed}) {
     setIsLoading(false);
   };
 
-  const logout = () => {
-    sessionStorage.removeItem("token");
-    setFailedAuth(true);
-    setProfile(null);
-  };
+
 
   useEffect(() => {
     getProfile();
@@ -72,30 +65,27 @@ function Dashboard({userMeds, deleteUserMed}) {
 
   return (
     <main className="dashboard">
-      {/* <h1 className="dashboard__title">Home</h1> */}
       <div className="dashboard__card">
 
 
-        {/* <div className='dashboard__image' > </div> */}
         <div className="dashboard__message">
           <section className="dashboard__hero" >
             <div className="dashboard__hero-styler">
-              <div className="dashboard__hero-texts" >
-                <h1> {`${profile.full_name.split(" ")[0]}'s`} Health Decision-Making Hub</h1>
-                {/* <h2>Overview:</h2> */}
-                {/* <p>RxCheck is your gateway to informed decision-making.</p>  */}
-                <p> Discover the power to make confident choices about your medications, with insights into active ingredients, contra-indications, indications, and food interactions—all at your fingertips.</p>
-              </div>
-              <img src={hero} className="dashboard__hero-img" alt="hero" />
-            </div>
-            <div className="dashboard__hero-actions">
+              <div className="dashboard__hero-top">
+                <div className="dashboard__hero-texts" >
+                  <h1> {`${profile.full_name.split(" ")[0]}'s`} Health Decision-Making Hub</h1>
 
-              <Link className="dashboard__hero-link" to='/search'>
-                <button className="dashboard__hero-search" > Search Meds</button>
-              </Link>
-              {/* <Link className="dashboard__hero-link" to='#saved' > */}
+                  <p> Discover the power to make confident choices about your medications, with insights into active ingredients, contra-indications, indications, and food interactions—all at your fingertips.</p>
+                </div>
+                <img src={hero} className="dashboard__hero-img" alt="hero" />
+              </div>
+              <div className="dashboard__hero-actions">
+
+                <Link className="dashboard__hero-link" to='/search'>
+                  <button className="dashboard__hero-search" > Search Meds</button>
+                </Link>
                 <button className="dashboard__hero-saved" onClick={scrollTo} > Your Pill Box</button>
-              {/* </Link> */}
+              </div>
             </div>
           </section>
           <section id="features" className="dashboard__features">
@@ -143,9 +133,7 @@ function Dashboard({userMeds, deleteUserMed}) {
               </li>
             </ul>
 
-            {/* <h2>Experience the Difference</h2>
-            <p>Take control of your health journey like never before. With RxCheck, you're not just managing medications; you're empowering yourself to make informed decisions that enhance your well-being. Join us and discover the transformative power of knowledge-driven health care.</p>
-          */}
+
           </section>
 
         </div>
@@ -153,18 +141,14 @@ function Dashboard({userMeds, deleteUserMed}) {
 
         <section id="saved" ref={savedSection} className="dashboard__saved">
           <h2
-          // className="dashboard--sizing"
           > Your Pill Box </h2>
           <p>{`Here are the items in your pill box ${profile.full_name.split(" ")[0]}!`}</p>
           <SavedMeds id={profile.id} userMeds={userMeds} deleteUserMed={deleteUserMed} />
           <div className="dashboard__profile">
-            {/* <p> {profile.full_name}</p> */}
+
 
           </div>
 
-          {/* <button onClick={logout}>
-          Log out
-        </button> */}
         </section>
       </div>
 

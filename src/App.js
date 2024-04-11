@@ -18,45 +18,34 @@ function App() {
   const [updateUserMeds, setUpdateUserMeds] = useState(true);
 
   const getUserMeds = async () => {
-    console.log(baseUrl)
     try {
       const id = JSON.parse(sessionStorage.getItem('profileId'));
       const response = await axios.get(`${baseUrl}users/${id}/meds`)
-      // setProfile(response.data);
       setUserMeds(response.data);
-      // setFilteredMeds(response.data)
       sessionStorage.setItem('userDrugs', JSON.stringify(response.data));
 
 
-      console.log("Obtaiined MEDS", response.data)
     } catch (error) {
       console.error(error);
-      // setFailedAuth(true);
-      console.log("NO DATA GOTTEN")
     }
 
-    // setIsLoadingData(false);
+
   };
   const deleteUserMed = async (medId, profileId) => {
 
     try {
-      const response = await axios.delete(`${baseUrl}users/${profileId}/meds/${medId}`)
-      // setProfile(response.data);
-      // setUserMeds(response.data)
+      await axios.delete(`${baseUrl}users/${profileId}/meds/${medId}`)
+
       setUpdateUserMeds(!updateUserMeds);
-      console.log("deleted MEDS", response.data)
     } catch (error) {
       console.error(error);
-      // setFailedAuth(true);
-      console.log("NO DATA GOTTEN")
+
     }
 
-    // setIsLoadingData(false);
+
   };
   const updateUserDrugs = () => {
-    // if (userMeds.length !== newValue.length) {
 
-    // }
     setUpdateUserMeds(!updateUserMeds);
   };
   useEffect(() => {

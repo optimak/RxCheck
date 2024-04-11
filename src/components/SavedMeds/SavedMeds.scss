@@ -6,11 +6,17 @@
     
     &-meds {
         padding: 2rem 3rem;
-        width: 100%;
+        // width: 100%;
+        width: 72.5rem;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
        
+        &__message {
+            color: $rx-orange;
+            font-weight: 600;
+        }
         & a {
             width: fit-content;
             display: flex;
