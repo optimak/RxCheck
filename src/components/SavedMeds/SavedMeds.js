@@ -29,7 +29,7 @@ function SavedMeds({ id, userMeds, deleteUserMed }) {
         };
         getUserMeds();
 
-    }, [id])
+    }, [id,userMeds])
 
     const unSaveMed = (event, medId) => {
         event.preventDefault()

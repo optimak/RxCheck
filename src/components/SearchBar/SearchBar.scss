@@ -3,17 +3,21 @@
 @use '../../styles/partials/variables.scss' as *;
 
 .search-bar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 0.5px solid $silver;
-    border-radius: 9px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    // border-top: 0.5px solid $silver;
+    // border-radius: 9px;
     padding: 8px;
-    width: 85%;
+    width: 1088px;
     text-align: center;
-    margin: auto;
-    margin: 1rem auto;
-    background-color: #ffffff;
+    // margin: auto;
+    // margin: 1rem 0 1rem 11.8rem;
+    // background-color: #ffffff;
+    position: relative;
+    left: calc((100vw - ($desktop-breakpoint * 0.77))/2);
+
+
 }
 
 .search-input {
@@ -21,17 +25,21 @@
     border-radius: 9px;
     padding: 8px;
     margin-right: 8px;
-    width: 40%;
+    width: 30%;
+    height: 30px;
+    display: grid;
+
 
     &::placeholder {
         font-size: 0.87rem;
     }
+
     &:focus {
         border: 1px solid $rx-burnt-orange;
         outline: $rx-burnt-orange;
-        
+
     }
-  
+
 }
 
 
@@ -52,20 +60,63 @@
     margin: 0.25rem;
 }
 
-.search-button {
-    border: none;
-    border-radius: 7px;
-    padding: 8px 16px;
-    background-color: $rx-burnt-orange;
-    color: #ffffff;
+// .search-button {
+//     border: none;
+//     border-radius: 7px;
+//     padding: 8px 16px;
+//     background-color: $rx-burnt-orange;
+//     color: #ffffff;
+//     cursor: pointer;
+//     font-weight: 600;
+//     font-size: 1rem;
+//     margin-right: 0.25rem;
+
+//     &:hover {
+//         background-color: $rx-orange;
+//         font-weight: 600;
+
+//     }
+//}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.filter-button {
+    margin-top: 1rem;
+    background-color: #f0f0f0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-right: 0.25rem;
+    transition: background-color 0.3s ease;
+    font-size: 0.8rem;
 
-    &:hover {
-        background-color: $rx-orange;
-        font-weight: 600;
+}
 
-    }
+.filter-button:hover {
+    background-color:#f58b73cf;
+    color: #ffffff;
+ 
+}
+
+.filter-button.active {
+    background-color: $rx-orange;
+    color: #fff;
+}
+
+.search-input {
+    // padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.search-bar-container p {
+    margin: 5px 0;
 }

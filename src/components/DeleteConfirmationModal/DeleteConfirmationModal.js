@@ -7,7 +7,6 @@ function DeleteConfirmationModal({ isOpen, onDeleteConfirm, onCancel, itemId }) 
         <div className="delete-modal">
             <div className="delete-modal__inner">
                 <h6>Delete Comment</h6>
-                {/* <div className='details__med-divider'> </div> */}
 
                 <p>Are you sure you want to delete this comment?</p>
                 <div>

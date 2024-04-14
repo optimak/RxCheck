@@ -1,13 +1,18 @@
 @use '../../styles/partials/fonts.scss' as *;
 @use '../../styles/partials/mixins.scss' as *;
 @use '../../styles/partials/variables.scss' as *;
-
+#saved {
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    align-items: center;
+}
 .saved {
     
     &-meds {
         padding: 2rem 3rem;
         // width: 100%;
-        width: 72.5rem;
+        width: 71.85rem; //1150/1280px
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
