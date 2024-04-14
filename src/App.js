@@ -11,11 +11,41 @@ import Header from "./components/Header/Header";
 import axios from "axios";
 import { useEffect, useState } from 'react';
 import { baseUrl } from './consts';
+import AboutPage from './pages/AboutPage/AboutPage';
 
 
 function App() {
   const [userMeds, setUserMeds] = useState([]);
+  const [userComments, setUserComments] = useState(null);
+
   const [updateUserMeds, setUpdateUserMeds] = useState(true);
+  const [updateUserComments, setUpdateUserComments] = useState(true);
+  const profileId = sessionStorage.getItem('profileId');
+  const [allMeds, setAllMeds] = useState(null)
+
+
+  const getUserComments = async () => {
+    // const profileId = sessionStorage.getItem('profileId')
+    try {
+      const response = await axios.get(`${baseUrl}comments/all/${profileId}`);
+      // setUpdateUserMeds(!updateUserMeds);
+      setUserComments(response.data)
+      console.log(response.data, profileId, "profileID")
+    } catch (error) {
+      console.error(error);
+
+    }
+
+
+  };
+  const updateUserCommentList = () => {
+    setUpdateUserComments(!updateUserComments)
+
+  }
+  useEffect(() => {
+    getUserComments()
+  }, [profileId, updateUserComments])
+
 
   const getUserMeds = async () => {
     try {
@@ -53,7 +83,22 @@ function App() {
 
   }, [updateUserMeds])
 
+  //get all meds
+  const getMeds = async () => {
 
+    try {
+      const response = await axios.get(`${baseUrl}medications`)
+      setAllMeds(response.data)
+
+    } catch (error) {
+      console.error(error);
+    }
+
+    // setIsLoadingData(false);
+  };
+  useEffect(() => {
+    getMeds()
+  }, [])
   return (
     <div className="App">
       <BrowserRouter>
@@ -62,13 +107,14 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<><Header /> <Dashboard userMeds={userMeds} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} /></>} />
+          <Route path="/" element={<><Header /> <Dashboard userMeds={userMeds} userComments={userComments} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} allMeds={allMeds} /></>} />
+          <Route path="/about" element={<><Header /> <AboutPage userMeds={userMeds} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} /></>} />
 
 
           <Route path="/search" element={<><Header /> <FindMeds userMeds={userMeds} /> </>} >
             <Route path="" element={<SearchPage />} />
 
-            <Route path=":medId" element={<Details userMeds={userMeds} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} />} />
+            <Route path=":medId" element={<Details userMeds={userMeds} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} updateUserCommentList={updateUserCommentList} />} />
           </Route>
           <Route path="*" element={<><Header /><Dashboard /> </>} />
 

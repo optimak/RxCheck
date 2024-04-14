@@ -10,12 +10,16 @@
     position: fixed;
     box-shadow: 1px 2px 5px rgba(91, 30, 2, 0.1);
     z-index: 100;
-    
+
 
     & nav {
         display: flex;
         justify-content: space-between;
         width: 68vw;
+
+        & li {
+            margin-right: 2rem;
+        }
     }
 
     &-nav {
@@ -58,7 +62,7 @@
         width: 50%;
         align-items: center;
         position: relative;
-       
+
         & a {
             justify-content: center;
             font-weight: 400;
@@ -89,13 +93,19 @@
 
     }
 
+    &__log-text {
+        position: relative;
+        top: 6px;
+    }
+
     &__logout {
         display: flex;
-        align-items: center;
+        // align-items: flex-end;
+        font-size: 0.9rem;
 
         & h3 {
             font-weight: 600;
-            font-size: 0.9rem;
+            // font-size: 0.7rem;
         }
 
     }
@@ -106,6 +116,5 @@
 .dashboard__title-header {
     margin: 0 auto;
 
-    & a {
-    }
+    & a {}
 }

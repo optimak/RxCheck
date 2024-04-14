@@ -15,7 +15,7 @@ import './Details.scss';
 
 
 
-function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
+function Details({ userMeds, updateUserDrugs, deleteUserMed,updateUserCommentList }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentCommentId, setCurrentCommentId] = useState(null);
     const { medId } = useParams()
@@ -102,9 +102,9 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
 
     };
 
-    const handleDeleteConfirm = (commentId) => {
+    const handleDeleteConfirm = async (commentId) => {
 
-        deleteComment(commentId)
+        await deleteComment(commentId)
         window.location.reload();
         setIsModalOpen(false); // Close the modal
     };
@@ -118,12 +118,13 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
     //useEffects
     useEffect(() => {
         sessionStorage.setItem('myPageState', JSON.stringify(location.state));
+        console.log("location.state",location.state)
     }, [location.state]);
 
     useEffect(() => {
         const savedState = JSON.parse(sessionStorage.getItem('myPageState'));
         if (savedState) {
-            setMedData(savedState.medData ?? savedState.filteredMeds)
+            setMedData(savedState.medData ?? savedState.filteredMeds ?? savedState.allMeds)
         }
 
 
@@ -179,7 +180,7 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
         }
         setIsSavedMed(userMeds.some(userMed =>
             userMed.user_id === profile.id && userMed.medication_id === Number(medId)))
-        
+
     }, [medId, profile, userMeds])
 
     let med = medData.find(drug => drug.id === Number(medId));
@@ -206,14 +207,14 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
     const saveHandler = async () => {
         const newIsSavedMed = !isSavedMed;
         setIsSavedMed(newIsSavedMed);
-    
+
         try {
             if (newIsSavedMed) {
                 await addUserMed(med.id);
             } else {
                 await deleteUserMed(med.id, profileId);
             }
-            updateUserDrugs(); 
+            updateUserDrugs();
         } catch (error) {
             console.error(error);
         }
@@ -241,7 +242,15 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
                                     <h3>{med.name}</h3>
                                     <div className='saved-icons' onClick={saveHandler}>
                                         {isSavedMed
-                                            ? (<div className="saved-icon">&#9733; </div>) : (<div className="saved-icon--not">&#9734;</div>)
+                                            ? (
+                                                <div className="tooltip" data-tooltip="Unsave from Pill Box">
+                                                    <div className="saved-icon">&#9733;</div>
+                                                </div>
+                                            ) : (
+                                                <div className="tooltip" data-tooltip="   Save to Pill Box">
+                                                    <div className="saved-icon--not">&#9734;</div>
+                                                </div>
+                                            )
                                         }
 
                                     </div>
@@ -284,7 +293,7 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
                                     : (<div> </div>)}
 
 
-                                <CommentForm medId={medId} profileId={profileId} />
+                                <CommentForm medId={medId} profileId={profileId} updateUserCommentList={updateUserCommentList}/>
 
 
                                 <div className='details__med-divider'> </div>
@@ -324,31 +333,34 @@ function Details({ userMeds, updateUserDrugs, deleteUserMed }) {
 
 
                             <div className='details__drug-list'>
+                                <p className='details__drug-list-title' > Select a drug below for details </p>
+                                <div className='details__drug-list'>
+                                    {medData.map(med =>
+                                    (<Link key={med.id}
+                                        className='details__drug-link'
+                                        to={`/search/${med.id}`}
+                                        state={{ medData, profileId }}>
+                                        <div className='details__drug-card' key={med.id}>
+                                            <img src={pill} alt='pill' />
 
 
-                                {medData.map(med =>
-                                (<Link key={med.id}
-                                    className='details__drug-link'
-                                    to={`/search/${med.id}`}
-                                    state={{ medData, profileId }}>
-                                    <div className='details__drug-card' key={med.id}>
 
-                                        <div className='details__drug-name'>
-                                            {med.name}
+                                            <div className='details__drug-details'>
+                                                <div className='details__drug-name'>
+                                                    {med.name}
 
+                                                </div>
+                                                <div className='details__drug-other-details'>
+                                                    <h6 className="details__drug-subtitle">
+                                                        ACTIVE INGREDIENT </h6>
+                                                    <h6 className="details__drug-detail "> {med.active_ingredient}</h6>
+                                                </div>
+
+                                            </div>
                                         </div>
-
-                                        <div className='details__drug-details'>
-
-
-                                            <h6 className="details__drug-subtitle">
-                                                ACTIVE INGREDIENT </h6>
-                                            <h6 className="details__drug-detail "> {med.active_ingredient}</h6>
-
-                                        </div>
-                                    </div>
-                                </Link>)
-                                )}
+                                    </Link>)
+                                    )}
+                                </div>
 
 
                             </div>

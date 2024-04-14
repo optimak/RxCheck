@@ -4,189 +4,130 @@
 
 .dashboard {
     padding-top: 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    &__message {
-        width: 100vw;
+    &__welcome {
+        & h2 {
+            margin: 1rem;
+
+            font-weight: 400;
+            font-size: 1.3rem;
+            border-bottom: 0.5px solid $silver;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem
+        }
     }
 
-    &__hero {
-        background-color: white;
-        width: 100vw; ///check below component
-        padding: 1rem 4rem 1.5rem;
-        margin-top: 2rem;
+
+
+    &__activity {
         display: flex;
         flex-direction: column;
         align-items: center;
 
-        & p {
-            padding-top: 1rem;
-            margin-bottom: 1rem;
-        }
+        &>h4 {
+            font-weight: 600;
+            padding: 1.5rem;
 
-        &-top {
-            display: flex;
-            align-items: center;
         }
 
         &-styler {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            // position: relative;
-            width: 71.88rem;
-            // width: calc($desktop-breakpoint * 0.77);
-
-            left: calc((100vw - 1150px) / 9002);
-            // overflow: hidden;
+            justify-content: center;
 
         }
 
-        &-texts {
-            padding-left: 6rem;
-            text-align: left;
-            padding-top: 2rem;
-            width: 39.63rem;
-        }
-
-        &-img {
-            width: 32.275rem;
-            height: auto;
-            // position: relative;
-            // top: 2rem;
-        }
-
-        &-search {
-            border: none;
-            border-radius: 7px;
-            padding: 8px 16px;
-            background-color: $rx-orange;
-            color: #ffffff;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-right: 0.25rem;
-
-            &:hover {
-                background-color: $rx-burnt-orange;
-                font-weight: 600;
-
-            }
-        }
-
-        &-saved {
-            border: 1px solid $rx-orange;
-            border-radius: 7px;
-            padding: 8px 16px;
-            background-color: white;
-            color: $rx-orange;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-right: 0.25rem;
-            width: 140px;
-            margin-right: 3rem;
-            // position: relative;
-            // top: -5rem;
-            // left: 2rem;
-
-            &:hover {
-                border-color: $rx-burnt-orange;
-                color: $rx-burnt-orange;
-                font-weight: 600;
-
-            }
-        }
-
-        &-link {
-            width: 140px;
-            margin-right: 3rem;
-            // position: relative;
-            // top: -5rem;
-            // left: 2rem;
-        }
-
-        &-actions {
-            display: flex;
-            width: 90%;
-            justify-content: flex-start;
-            position: relative;
-            top: -2.8rem;
-            left: 2.4rem;
-        }
-    }
-
-    &__card {
-        margin: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__features {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        & strong {
-            font-size: 0.85rem;
-            border-bottom: 1px solid $rx-orange;
-            padding-bottom: 1rem;
-
-        }
-
-        & h2 {
-            padding: 4rem 0 1rem;
-        }
-
-        & ul {
-            display: flex;
-            padding:2rem 0rem 4rem 3rem;
-            list-style-type: none;
-            // text-align: left;
-            width: 1160px;
-            // height: 110%;
-            padding-left: 4rem;
-            position: relative;
-            left: calc((100vw - 1200px) / 9002);
-
-            & div {
-                text-align: left;
-
-            }
-        }
-
-        & li {
-
+        &-card {
+            // border: 1px solid red;
+            // width: 100%;
             margin: 0 1.25rem;
+            margin-bottom: 1.5rem;
             // border: 1px solid red;
             background-color: white;
-            padding: 2rem 1.5rem;
+            padding: 1rem 1.5rem;
             padding-bottom: 1rem;
             box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
             border-radius: 10px;
-            width: 20vw;
+            width: fit-content;
+
             // height: 100%;
+            &-reviews {
+                display: flex;
+                // flex-direction: column;
+                &:hover{
+                    cursor: pointer;
+                    color:red;
+                    box-shadow: 0 4px 6px #C64E3380;
+
+                }
+
+            }
+
+            & h4 {
+                font-size: 1.25rem;
+                font-weight: 400;
+            }
 
             & p {
-                font-size: 0.8rem;
-                padding: 1.5rem 0 0.5rem;
-                // margin-top: 5rem;
-                // text-align: ;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: $silver;
+                padding-bottom: 0.5rem;
+
             }
+        }
+    }
 
-            & div {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
+    &__comment-card {
+        width: 100%;
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+        border-radius: 10px;
+
+        // border: 1px solid red;
+        & div {
+            text-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            & p {
+                // padding-top: 0.2rem;
+                // margin: 0.2rem;
+                color: black;
+
+                & em {
+                    font-weight: 400;
+                    padding-right: 0.5rem;
+                }
             }
+        }
+    }
 
+    &__comment-link {
+        font-weight: inherit;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 0.35rem;
+        background-color: white;
 
+        & img {
+            width: 70px;
+            margin: 0.6rem;
+            margin-right: 0.9rem;
         }
     }
 
     &__saved {
+        &>h4 {
+            font-weight: 600;
+            padding: 1.5rem;
+        }
         & h2 {
             padding: 3rem 0 1rem;
         }
@@ -240,3 +181,54 @@
         width: auto
     }
 }
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0.5rem;
+
+    & p {
+        color: $silver;
+    }
+}
+
+.comment-card {
+    padding: 1.5rem;
+    margin: 0;
+    width: fit-content;
+    // background-color: #ff2edf;
+
+}
+#saved {
+    border-top: 0.5px solid $silver;
+    width:65%;
+    margin-top: 1.5rem;
+
+}
+// @keyframes slideIn {
+//     from {
+//         transform: translateX(-50%);
+//         opacity: 0;
+//     }
+
+//     to {
+//         transform: translateX(0);
+//         opacity: 1;
+//     }
+// }
+
+// .card:nth-child(1) {
+//     animation-delay: 0.1s;
+// }
+
+// .card:nth-child(2) {
+//     animation-delay: 0.6s;
+// }
+
+// .card:nth-child(3) {
+//     animation-delay: 0.8s;
+// }
+
+// .card:nth-child(4) {
+//     animation-delay: 1.2s;
+// }

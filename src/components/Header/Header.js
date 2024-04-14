@@ -46,7 +46,8 @@ function Header() {
         location.pathname === "/search" ||
         searchPathRegex.test(location.pathname);
 
-
+    const isActiveAbout =
+        location.pathname === "/about" ;
 
     useEffect(() => {
         getProfile()
@@ -75,12 +76,12 @@ function Header() {
                         <img className="header__logo" src={logo} alt='logo' />
                     </Link>
                     <nav>
-                        <ul class="header-nav">
+                        <ul className="header-nav">
                             <li>
                                 <Link to='/' >
                                     <h3
                                         className={
-                                            !isActiveSearch
+                                            !isActiveSearch && !isActiveAbout
                                                 ? "header__text header__text--active"
                                                 : "header__text"
                                         }
@@ -105,11 +106,29 @@ function Header() {
                                 </Link>
 
                             </li>
-                        </ul>
-                        <ul class="header-nav">
                             <li>
-                                <Link to='/login' >
-                                    <h3 className='header__text header__logout' onClick={logout}>
+                                <Link to='/about' >
+                                    <h3
+                                        className={
+                                            !isActiveSearch && isActiveAbout
+                                                ? "header__text header__text--active"
+                                                : "header__text"
+                                        }>
+                                        About
+                                    </h3>
+
+                                </Link>
+
+                            </li>
+                        </ul>
+                        <ul className="header-nav">
+                            <li>
+                                <Link to='/login' className='header__text header__logout' >
+                                    <h3
+                                        className='
+                                     header__log-text 
+                                    header__logout'
+                                        onClick={logout}>
                                         LOG OUT
                                     </h3>
 

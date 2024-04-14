@@ -5,7 +5,7 @@ import { baseUrl } from "../../consts";
 import axios from 'axios';
 
 
-export default function CommentForm({medId, profileId}) {
+export default function CommentForm({medId, profileId,updateUserCommentList}) {
 
     const handleSubmitComment = async (event) => {
         event.preventDefault();
@@ -15,7 +15,8 @@ export default function CommentForm({medId, profileId}) {
             user_id: profileId,
             medication_id: medId,
             content: event.target.comment.value,
-          });
+          })
+          updateUserCommentList();
         window.location.reload();
 
         } catch (error) {
