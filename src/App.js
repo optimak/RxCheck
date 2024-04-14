@@ -24,25 +24,26 @@ function App() {
   const [allMeds, setAllMeds] = useState(null)
 
 
-  const getUserComments = async () => {
-    // const profileId = sessionStorage.getItem('profileId')
-    try {
-      const response = await axios.get(`${baseUrl}comments/all/${profileId}`);
-      // setUpdateUserMeds(!updateUserMeds);
-      setUserComments(response.data)
-      console.log(response.data, profileId, "profileID")
-    } catch (error) {
-      console.error(error);
 
-    }
-
-
-  };
   const updateUserCommentList = () => {
     setUpdateUserComments(!updateUserComments)
 
   }
   useEffect(() => {
+    const getUserComments = async () => {
+      // const profileId = sessionStorage.getItem('profileId')
+      try {
+        const response = await axios.get(`${baseUrl}comments/all/${profileId}`);
+        // setUpdateUserMeds(!updateUserMeds);
+        setUserComments(response.data)
+        console.log(response.data, profileId, "profileID")
+      } catch (error) {
+        console.error(error);
+
+      }
+
+
+    };
     getUserComments()
   }, [profileId, updateUserComments])
 

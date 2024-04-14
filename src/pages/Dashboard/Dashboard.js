@@ -22,9 +22,7 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
 
   const savedSection = useRef(null);
 
-  const scrollTo = () => {
-    window.scrollTo({ top: savedSection.current.offsetTop, behavior: 'smooth', });
-  }
+
 
   const daysSince = (dateString) => {
 
@@ -42,32 +40,33 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
     return dateObj.toLocaleDateString('en-US', options);
   }
 
-  const getProfile = async () => {
-    const token = sessionStorage.getItem("token");
 
-    try {
-      const response = await axios.get(`${baseUrl}users/profile`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-
-      setProfile(response.data);
-      sessionStorage.setItem('profileId', JSON.stringify(response.data.id));
-      sessionStorage.setItem('allMeds', JSON.stringify(allMeds));
-
-
-    } catch (error) {
-      console.error(error);
-      setFailedAuth(true);
-    }
-
-    setIsLoading(false);
-  };
 
   console.log(userComments)
 
   useEffect(() => {
+    const getProfile = async () => {
+      const token = sessionStorage.getItem("token");
+  
+      try {
+        const response = await axios.get(`${baseUrl}users/profile`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+  
+        setProfile(response.data);
+        sessionStorage.setItem('profileId', JSON.stringify(response.data.id));
+        sessionStorage.setItem('allMeds', JSON.stringify(allMeds));
+  
+  
+      } catch (error) {
+        console.error(error);
+        setFailedAuth(true);
+      }
+  
+      setIsLoading(false);
+    };
     getProfile();
-  }, []);
+  }, [allMeds]);
 
 
   if (failedAuth) {
@@ -89,7 +88,7 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
     )
   }
   const profileId = JSON.parse(sessionStorage.getItem('profileId'));
-  const filteredMeds = [...userMeds];
+  
   return (
     <main className="dashboard">
 
