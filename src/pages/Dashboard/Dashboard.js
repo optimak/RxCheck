@@ -22,9 +22,7 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
 
   const savedSection = useRef(null);
 
-  const scrollTo = () => {
-    window.scrollTo({ top: savedSection.current.offsetTop, behavior: 'smooth', });
-  }
+
 
   const daysSince = (dateString) => {
 
