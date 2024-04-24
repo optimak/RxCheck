@@ -40,32 +40,34 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds , getProfile
     return dateObj.toLocaleDateString('en-US', options);
   }
 
-  const getProfile = async () => {
-    const token = sessionStorage.getItem("token");
 
-    try {
-      const response = await axios.get(`${baseUrl}users/profile`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-
-      setProfile(response.data);
-      sessionStorage.setItem('profileId', JSON.stringify(response.data.id));
-      sessionStorage.setItem('allMeds', JSON.stringify(allMeds));
-      getProfileId(response.data.id)
-
-    } catch (error) {
-      console.error(error);
-      setFailedAuth(true);
-    }
-
-    setIsLoading(false);
-  };
 
   console.log(userComments)
 
   useEffect(() => {
+    const getProfile = async () => {
+      const token = sessionStorage.getItem("token");
+  
+      try {
+        const response = await axios.get(`${baseUrl}users/profile`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+  
+        setProfile(response.data);
+        sessionStorage.setItem('profileId', JSON.stringify(response.data.id));
+        sessionStorage.setItem('allMeds', JSON.stringify(allMeds));
+        getProfileId(response.data.id)
+  
+      } catch (error) {
+        console.error(error);
+        setFailedAuth(true);
+      }
+  
+      setIsLoading(false);
+    };
+
     getProfile();
-  }, []);
+  }, [allMeds,getProfileId]);
 
 
   if (failedAuth) {
