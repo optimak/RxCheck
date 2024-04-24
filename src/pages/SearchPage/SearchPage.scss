@@ -2,11 +2,31 @@
 @use '../../styles/partials/mixins.scss' as *;
 @use '../../styles/partials/variables.scss' as *;
 
-
 .search__list {
+    // overflow: hidden;
+        // width:50%;
+        height:inherit;
+    
+    
+    }
+@include tablet {
+    .search__list {
+        // overflow: hidden;
+            // width:50%;
+            height:inherit;
+        
+        
+        }
+    
+  }
+
+@include desktop {
+  .search__list {
 // overflow: hidden;
     // width:50%;
     height:inherit;
 
 
+}
+  
 }

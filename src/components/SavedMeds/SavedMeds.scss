@@ -1,7 +1,211 @@
 @use '../../styles/partials/fonts.scss' as *;
 @use '../../styles/partials/mixins.scss' as *;
 @use '../../styles/partials/variables.scss' as *;
+
 #saved {
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    align-items: center;
+}
+.saved {
+    
+    &-meds {
+        padding: 2rem 3rem;
+        padding: 2rem 0rem;
+
+        // width: 100%;
+        // width: 71.85rem; //1150/1280px
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+       
+        &__message {
+            color: $rx-orange;
+            font-weight: 600;
+        }
+        & a {
+            width: fit-content;
+            display: flex;
+        }
+
+    }
+    &-med__bookmark {
+        color: $rx-burnt-orange;
+        font-size: 1.25rem;
+        padding: 0;
+        position: relative;
+        left:1rem;
+        top: -0.5rem;
+        z-index: 20;
+
+    }
+
+    &-med__card {
+        // width: 100%;
+        background-color: white;
+        margin: 0 1.25rem;
+        margin-bottom: 1.5rem;
+        // border: 1px solid red;
+        background-color: white;
+        padding: 2rem 1.5rem;
+        padding: 1rem 1.5rem 1rem 1rem;
+        padding-bottom: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+        border-radius: 10px;
+        width: fit-content;
+        // height: 100%;
+
+
+    }
+
+    &-med__name {
+        display: flex;
+        font-size: 0.8rem;
+        border-bottom: 1px solid $rx-orange;
+        padding-bottom: 0.25rem;
+
+        & img {
+            width: 1.5rem;
+            // padding: 1rem 0.5rem;
+            object-fit: contain;
+            margin-right: 1rem;
+
+        }
+    }
+
+    &-med__icon {
+
+        // background-color: $rx-orange;
+        // background-position: ;
+        & path {
+            fill: black
+        }
+    }
+
+    &-med__details {
+        font-weight: 600;
+
+        & .saved-med__detail {
+            font-weight: 600;
+            font-size: 0.75rem;
+
+        }
+
+        & p {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+
+    }
+
+}
+
+@include tablet {
+    #saved {
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    align-items: center;
+}
+.saved {
+    
+    &-meds {
+        padding: 2rem 3rem;
+        // width: 100%;
+        // width: 71.85rem; //1150/1280px
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+       
+        &__message {
+            color: $rx-orange;
+            font-weight: 600;
+        }
+        & a {
+            width: fit-content;
+            display: flex;
+        }
+
+    }
+    &-med__bookmark {
+        color: $rx-burnt-orange;
+        font-size: 1.25rem;
+        padding: 0;
+        position: relative;
+        left:1rem;
+        top: -0.5rem;
+        z-index: 20;
+
+    }
+
+    &-med__card {
+        // width: 100%;
+        background-color: white;
+        margin: 0 1.25rem;
+        margin-bottom: 1.5rem;
+        // border: 1px solid red;
+        background-color: white;
+        padding: 2rem 1.5rem;
+        padding: 1rem 1.5rem 1rem 1rem;
+        padding-bottom: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+        border-radius: 10px;
+        width: fit-content;
+        // height: 100%;
+
+
+    }
+
+    &-med__name {
+        display: flex;
+        font-size: 0.8rem;
+        border-bottom: 1px solid $rx-orange;
+        padding-bottom: 0.25rem;
+
+        & img {
+            width: 1.5rem;
+            // padding: 1rem 0.5rem;
+            object-fit: contain;
+            margin-right: 1rem;
+
+        }
+    }
+
+    &-med__icon {
+
+        // background-color: $rx-orange;
+        // background-position: ;
+        & path {
+            fill: black
+        }
+    }
+
+    &-med__details {
+        font-weight: 600;
+
+        & .saved-med__detail {
+            font-weight: 600;
+            font-size: 0.75rem;
+
+        }
+
+        & p {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+
+    }
+
+}
+}
+
+@include desktop {
+    #saved {
     display: flex;
     flex-direction:column ;
     justify-content: center;
@@ -95,4 +299,5 @@
 
     }
 
+}
 }

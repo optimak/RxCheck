@@ -3,23 +3,24 @@
 @use '../../styles/partials/variables.scss' as *;
 
 .dashboard {
-    padding-top: 58px;
+    padding-top: 140px; /// check header for tablet
     display: flex;
     flex-direction: column;
     align-items: center;
 
     &__welcome {
+        width: 100%;
+
         & h2 {
-            margin: 1rem;
 
             font-weight: 400;
-            font-size: 1.3rem;
+            font-size: 0.99rem;
             border-bottom: 0.5px solid $silver;
             width: 100%;
             margin: 0 auto;
-            margin-top: 2rem;
+            // margin-top: 1rem;
             margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem
+            padding-bottom: 0.75rem
         }
     }
 
@@ -29,6 +30,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        // width: 80%;
+        margin: 0 auto;
+        padding: 0 2rem;
 
         &>h4 {
             font-weight: 600;
@@ -38,30 +42,39 @@
 
         &-styler {
             display: flex;
+            // flex-direction: row-reverse;
             justify-content: center;
-
+            flex-wrap: wrap;
         }
 
         &-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             // border: 1px solid red;
             // width: 100%;
-            margin: 0 1.25rem;
+            margin: 0 1rem;
             margin-bottom: 1.5rem;
             // border: 1px solid red;
             background-color: white;
-            padding: 1rem 1.5rem;
+            padding: 0.75rem 0.75rem;
             padding-bottom: 1rem;
             box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
             border-radius: 10px;
             width: fit-content;
+            width: 37vw;
+            height: fit-content;
+            min-height: 15vw;
 
             // height: 100%;
             &-reviews {
                 display: flex;
+
                 // flex-direction: column;
-                &:hover{
+                &:hover {
                     cursor: pointer;
-                    color:red;
+                    color: red;
                     box-shadow: 0 4px 6px #C64E3380;
 
                 }
@@ -69,7 +82,7 @@
             }
 
             & h4 {
-                font-size: 1.25rem;
+                font-size: 1rem;
                 font-weight: 400;
             }
 
@@ -100,10 +113,13 @@
                 // padding-top: 0.2rem;
                 // margin: 0.2rem;
                 color: black;
+                // font-size: 0.9rem;
+
 
                 & em {
                     font-weight: 400;
                     padding-right: 0.5rem;
+                    font-size: 0.8rem;
                 }
             }
         }
@@ -115,11 +131,18 @@
         margin: 0;
         margin-bottom: 0.35rem;
         background-color: white;
+        border-radius: 10px;
+
 
         & img {
             width: 70px;
             margin: 0.6rem;
             margin-right: 0.9rem;
+
+            animation: blurAnimation 1.5s infinite;
+
+
+
         }
     }
 
@@ -128,6 +151,7 @@
             font-weight: 600;
             padding: 1.5rem;
         }
+
         & h2 {
             padding: 3rem 0 1rem;
         }
@@ -199,12 +223,14 @@
     // background-color: #ff2edf;
 
 }
+
 #saved {
     border-top: 0.5px solid $silver;
-    width:65%;
+    width: 65%;
     margin-top: 1.5rem;
 
 }
+
 // @keyframes slideIn {
 //     from {
 //         transform: translateX(-50%);
@@ -232,3 +258,481 @@
 // .card:nth-child(4) {
 //     animation-delay: 1.2s;
 // }
+
+@include tablet {
+    .dashboard {
+        padding-top: 58px; /// check header for tablet
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__welcome {
+            & h2 {
+                margin: 1rem;
+
+                font-weight: 400;
+                font-size: 1.3rem;
+                border-bottom: 0.5px solid $silver;
+                width: 100%;
+                margin: 0 auto;
+                margin-top: 2rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.5rem
+            }
+        }
+
+
+
+        &__activity {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            // width: 80%;
+            margin: 0 auto;
+            padding: 0 2rem;
+
+            &>h4 {
+                font-weight: 600;
+                padding: 1.5rem;
+
+            }
+
+            &-styler {
+                display: flex;
+                justify-content: center;
+
+            }
+
+            &-card {
+                // border: 1px solid red;
+                // width: 100%;
+                margin: 0 1rem;
+                margin-bottom: 1.5rem;
+                // border: 1px solid red;
+                background-color: white;
+                padding: 1.5rem 0.75rem;
+                padding-bottom: 1rem;
+                box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+                border-radius: 10px;
+                width: fit-content;
+                height: fit-content;
+                min-height: 0;
+
+                // height: 100%;
+                &-reviews {
+                    display: flex;
+
+                    // flex-direction: column;
+                    &:hover {
+                        cursor: pointer;
+                        color: red;
+                        box-shadow: 0 4px 6px #C64E3380;
+
+                    }
+
+                }
+
+                & h4 {
+                    font-size: 1rem;
+                    font-weight: 400;
+                }
+
+                & p {
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    color: $silver;
+                    padding-bottom: 0.5rem;
+
+                }
+            }
+        }
+
+        &__comment-card {
+            width: 100%;
+            display: flex;
+            box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+            border-radius: 10px;
+
+            // border: 1px solid red;
+            & div {
+                text-align: start;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                & p {
+                    // padding-top: 0.2rem;
+                    // margin: 0.2rem;
+                    color: black;
+                    // font-size: 0.9rem;
+
+
+                    & em {
+                        font-weight: 400;
+                        padding-right: 0.5rem;
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+
+        &__comment-link {
+            font-weight: inherit;
+            width: 100%;
+            margin: 0;
+            margin-bottom: 0.35rem;
+            background-color: white;
+            border-radius: 10px;
+
+
+            & img {
+                width: 70px;
+                margin: 0.6rem;
+                margin-right: 0.9rem;
+            }
+        }
+
+        &__saved {
+            &>h4 {
+                font-weight: 600;
+                padding: 1.5rem;
+            }
+
+            & h2 {
+                padding: 3rem 0 1rem;
+            }
+        }
+
+        &__image {
+            position: relative;
+            top: 0.25rem;
+            width: 300px;
+            height: 300px;
+            background-image: url('../../assets/icons/avatar.png');
+            object-fit: fill;
+            background-position: center;
+            background-size: 300px 300px;
+            border-radius: 80px;
+            background-repeat: no-repeat;
+            margin-bottom: 2.5rem;
+
+        }
+
+        &__title {
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        &--sizing {
+            font-size: 1.8rem;
+            color: $silver;
+            margin: 1rem 0;
+        }
+
+        &__profile {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            // padding-left: 9%;
+            padding-top: 2.5rem;
+
+            & h2 {}
+
+            & p {
+                margin-bottom: 0.5rem;
+                font-weight: 400;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .dashboard__title-header {
+        &>a {
+            margin: 0 auto;
+            width: auto
+        }
+    }
+
+    .reviews {
+        display: flex;
+        flex-direction: column;
+        margin-right: 0.5rem;
+
+        & p {
+            color: $silver;
+        }
+    }
+
+    .comment-card {
+        padding: 1.5rem;
+        margin: 0;
+        width: fit-content;
+        // background-color: #ff2edf;
+
+    }
+
+    #saved {
+        border-top: 0.5px solid $silver;
+        width: 65%;
+        margin-top: 1.5rem;
+
+    }
+
+    // @keyframes slideIn {
+    //     from {
+    //         transform: translateX(-50%);
+    //         opacity: 0;
+    //     }
+
+    //     to {
+    //         transform: translateX(0);
+    //         opacity: 1;
+    //     }
+    // }
+
+    // .card:nth-child(1) {
+    //     animation-delay: 0.1s;
+    // }
+
+    // .card:nth-child(2) {
+    //     animation-delay: 0.6s;
+    // }
+
+    // .card:nth-child(3) {
+    //     animation-delay: 0.8s;
+    // }
+
+    // .card:nth-child(4) {
+    //     animation-delay: 1.2s;
+    // }
+}
+
+@include desktop {
+    .dashboard {
+        padding-top: 58px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__welcome {
+            & h2 {
+                margin: 1rem;
+
+                font-weight: 400;
+                font-size: 1.3rem;
+                border-bottom: 0.5px solid $silver;
+                width: 100%;
+                margin: 0 auto;
+                margin-top: 2rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.5rem
+            }
+        }
+
+
+
+        &__activity {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &>h4 {
+                font-weight: 600;
+                padding: 1.5rem;
+
+            }
+
+            &-styler {
+                display: flex;
+                justify-content: center;
+
+            }
+
+            &-card {
+                // border: 1px solid red;
+                // width: 100%;
+                margin: 0 1.25rem;
+                margin-bottom: 1.5rem;
+                // border: 1px solid red;
+                background-color: white;
+                padding: 1rem 1.5rem;
+                padding-bottom: 1rem;
+                box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+                border-radius: 10px;
+                width: fit-content;
+                min-height: 0;
+
+
+                // height: 100%;
+                &-reviews {
+                    display: flex;
+
+                    // flex-direction: column;
+                    &:hover {
+                        cursor: pointer;
+                        color: red;
+                        box-shadow: 0 4px 6px #C64E3380;
+
+                    }
+
+                }
+
+                & h4 {
+                    font-size: 1.25rem;
+                    font-weight: 400;
+                }
+
+                & p {
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    color: $silver;
+                    padding-bottom: 0.5rem;
+
+                }
+            }
+        }
+
+        &__comment-card {
+            width: 100%;
+            display: flex;
+            box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+            border-radius: 10px;
+
+            // border: 1px solid red;
+            & div {
+                text-align: start;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                & p {
+                    // padding-top: 0.2rem;
+                    // margin: 0.2rem;
+                    color: black;
+
+                    & em {
+                        font-weight: 400;
+                        padding-right: 0.5rem;
+                    }
+                }
+            }
+        }
+
+        &__comment-link {
+            font-weight: inherit;
+            width: 100%;
+            margin: 0;
+            margin-bottom: 0.35rem;
+            background-color: white;
+            border-radius: 10px;
+
+
+            & img {
+                width: 70px;
+                margin: 0.6rem;
+                margin-right: 0.9rem;
+            }
+        }
+
+        &__saved {
+            &>h4 {
+                font-weight: 600;
+                padding: 1.5rem;
+            }
+
+            & h2 {
+                padding: 3rem 0 1rem;
+            }
+        }
+
+        &__image {
+            position: relative;
+            top: 0.25rem;
+            width: 300px;
+            height: 300px;
+            background-image: url('../../assets/icons/avatar.png');
+            object-fit: fill;
+            background-position: center;
+            background-size: 300px 300px;
+            border-radius: 80px;
+            background-repeat: no-repeat;
+            margin-bottom: 2.5rem;
+
+        }
+
+        &__title {
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        &--sizing {
+            font-size: 1.8rem;
+            color: $silver;
+            margin: 1rem 0;
+        }
+
+        &__profile {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            // padding-left: 9%;
+            padding-top: 2.5rem;
+
+            & h2 {}
+
+            & p {
+                margin-bottom: 0.5rem;
+                font-weight: 400;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .dashboard__title-header {
+        &>a {
+            margin: 0 auto;
+            width: auto
+        }
+    }
+
+    .reviews {
+        display: flex;
+        flex-direction: column;
+        margin-right: 0.5rem;
+
+        & p {
+            color: $silver;
+        }
+    }
+
+    .comment-card {
+        padding: 1.5rem;
+        margin: 0;
+        width: fit-content;
+        // background-color: #ff2edf;
+
+    }
+
+    #saved {
+        border-top: 0.5px solid $silver;
+        width: 65%;
+        margin-top: 1.5rem;
+
+    }
+
+
+
+}
+
+
+@keyframes blurAnimation {
+
+    0%,
+    100% {
+        // box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+        filter: opacity(100%);
+    }
+
+    50% {
+        // box-shadow: 0 0 20px rgba(201, 10, 10, 0.5);
+        filter: opacity(55%);
+    }
+}

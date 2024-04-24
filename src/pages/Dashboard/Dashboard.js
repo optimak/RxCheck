@@ -9,7 +9,7 @@ import pill from '../../assets/icons/pill.png'
 import reviewIcon from '../../assets/icons/reviews.svg'
 
 
-function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
+function Dashboard({ userMeds, deleteUserMed, userComments, allMeds , getProfileId}) {
   const [profile, setProfile] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -56,7 +56,7 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
         setProfile(response.data);
         sessionStorage.setItem('profileId', JSON.stringify(response.data.id));
         sessionStorage.setItem('allMeds', JSON.stringify(allMeds));
-  
+        getProfileId(response.data.id)
   
       } catch (error) {
         console.error(error);
@@ -65,8 +65,9 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
   
       setIsLoading(false);
     };
+
     getProfile();
-  }, [allMeds]);
+  }, [allMeds,getProfileId]);
 
 
   if (failedAuth) {
@@ -74,9 +75,9 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
       navigate("/login")
     )
   }
-  console.log(userMeds)
+  // console.log(userMeds)
 
-  if (isLoading) {
+  if (isLoading || !userComments) {
     return (
       <main className="dashboard">
         {/* <h1 className="dashboard__title"> Health Hub </h1> */}
@@ -88,7 +89,7 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
     )
   }
   const profileId = JSON.parse(sessionStorage.getItem('profileId'));
-  
+  // const filteredMeds = [...userMeds];
   return (
     <main className="dashboard">
 
@@ -102,6 +103,7 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
               <h4>{formatDateToUS(profile.last_login)}
             </h4>
             </div>
+            <div className="dashboard__activity-card"> <p>Last Saved item</p><h4>{userMeds && userMeds.length > 0 ? `${userMeds.slice(-1)[0].name}` : "None"}</h4></div>
 
             <div onClick={() => setShow(!show)} className="dashboard__activity-card dashboard__activity-card-reviews">
               <div className="reviews">
@@ -112,11 +114,10 @@ function Dashboard({ userMeds, deleteUserMed, userComments, allMeds }) {
 
             </div>
            
-
-            <div className="dashboard__activity-card"> <p>Days Since Last review</p> <h4>{userMeds && userMeds.length > 0 ? `${daysSince(userComments.slice(-1)[0].updated_at)}` : "None"}</h4> </div>
+            <div className="dashboard__activity-card"> <p>Days Since Last review</p> <h4>{userComments && userComments.length > 0 ? `${daysSince(userComments.slice(-1)[0].updated_at)}` : "None"}</h4> </div>
 
             {/* <p>{`You have ${userMeds.length} item${userMeds.length === 1 ? "" : "s"} in your pill box ${profile.full_name.split(" ")[0]}!`}</p> */}
-            <div className="dashboard__activity-card"> <p>Last Saved item</p><h4>{userMeds && userMeds.length > 0 ? `${userMeds.slice(-1)[0].name}` : "None"}</h4></div>
+            {/* <div className="dashboard__activity-card"> <p>Last Saved item</p><h4>{userMeds && userMeds.length > 0 ? `${userMeds.slice(-1)[0].name}` : "None"}</h4></div> */}
 
             <div className="dashboard__profile">
 

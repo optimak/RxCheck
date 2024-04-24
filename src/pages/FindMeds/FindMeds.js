@@ -1,6 +1,6 @@
 import "./FindMeds.scss";
 import { useCallback, useEffect, useState } from 'react';
-import {  NavLink, Outlet,useLocation } from "react-router-dom";
+import { NavLink, Outlet,useLocation } from "react-router-dom";
 
 import { baseUrl } from "../../consts";
 import axios from "axios";
@@ -105,7 +105,7 @@ function FindMeds({ userMeds }) {
 
    
     return (
-
+   
     
             <main className="search">
                 <h1 className="search__title">Find Medications</h1>

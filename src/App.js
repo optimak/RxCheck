@@ -20,7 +20,9 @@ function App() {
 
   const [updateUserMeds, setUpdateUserMeds] = useState(true);
   const [updateUserComments, setUpdateUserComments] = useState(true);
-  const profileId = sessionStorage.getItem('profileId');
+  // const profileId = sessionStorage.getItem('profileId');
+  const [profileId, setProfileId] = useState(null);
+
   const [allMeds, setAllMeds] = useState(null)
 
 
@@ -33,10 +35,19 @@ function App() {
     const getUserComments = async () => {
       // const profileId = sessionStorage.getItem('profileId')
       try {
-        const response = await axios.get(`${baseUrl}comments/all/${profileId}`);
+        const id = profileId ?? sessionStorage.getItem('profileId');
+        let response = await axios.get(`${baseUrl}comments/all/${id}`);
         // setUpdateUserMeds(!updateUserMeds);
         setUserComments(response.data)
         console.log(response.data, profileId, "profileID")
+        // if (!response) {
+        //   const id = sessionStorage.getItem('profileId')
+
+        //   let newResponse = await axios.get(`${baseUrl}comments/all/${id}`);
+        //   setUserComments(newResponse.data)
+        //   console.log(newResponse.data, id, "newId")
+
+        // }
       } catch (error) {
         console.error(error);
 
@@ -50,7 +61,7 @@ function App() {
 
   const getUserMeds = async () => {
     try {
-      const id = JSON.parse(sessionStorage.getItem('profileId'));
+      const id = profileId ?? sessionStorage.getItem('profileId');
       const response = await axios.get(`${baseUrl}users/${id}/meds`)
       setUserMeds(response.data);
       sessionStorage.setItem('userDrugs', JSON.stringify(response.data));
@@ -82,7 +93,7 @@ function App() {
   useEffect(() => {
     getUserMeds();
 
-  }, [updateUserMeds])
+  }, [updateUserMeds,profileId])
 
   //get all meds
   const getMeds = async () => {
@@ -99,7 +110,11 @@ function App() {
   };
   useEffect(() => {
     getMeds()
+    updateUserDrugs()
   }, [])
+  const getProfileId = (profileId) => {
+    setProfileId(profileId)
+  }
   return (
     <div className="App">
       <BrowserRouter>
@@ -108,7 +123,7 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<><Header /> <Dashboard userMeds={userMeds} userComments={userComments} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} allMeds={allMeds} /></>} />
+          <Route path="/" element={<><Header /> <Dashboard userMeds={userMeds} userComments={userComments} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} allMeds={allMeds} getProfileId={getProfileId} /></>} />
           <Route path="/about" element={<><Header /> <AboutPage userMeds={userMeds} updateUserDrugs={updateUserDrugs} deleteUserMed={deleteUserMed} /></>} />
 
 
