@@ -16,16 +16,21 @@ function DrugList({ filteredMeds, profileId }) {
                 <div className='drug-list__card' >
                     <img src={pill} alt='pill' />
 
-                   
+
                     <div className='drug-list__details'>
 
                         <div className='drug-list__name'>
                             {med.name}
 
                         </div>
-                        <p>
-                            <span className="drug-list__detail">Active Ingredient: </span>
-                            {med.active_ingredient}</p>
+                        <div className='drug-list__active-ingredient'>
+                            <p>
+                                <span className="drug-list__detail">ACTIVE INGREDIENT: </span>
+                            </p>
+
+                            {/* <br className='break'/> */}
+                            <p className='drug-list__api'>{med.active_ingredient}</p>
+                        </div>
 
                     </div>
                 </div>

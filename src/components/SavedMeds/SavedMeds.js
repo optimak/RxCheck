@@ -13,6 +13,22 @@ function SavedMeds({ id, userMeds, deleteUserMed }) {
 
 
 
+    useEffect(() => {
+        const getUserMeds = async () => {
+
+            try {
+                const response = await axios.get(`${baseUrl}users/${id}/meds`)
+                setFilteredMeds(response.data)
+
+            } catch (error) {
+                console.error(error);
+
+            }
+
+        };
+        getUserMeds();
+
+    })
 
     useEffect(() => {
         const getUserMeds = async () => {

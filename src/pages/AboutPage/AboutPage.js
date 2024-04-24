@@ -1,5 +1,5 @@
 import "./AboutPage.scss";
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../../consts";
@@ -9,18 +9,18 @@ import pill from '../../assets/icons/pill.png'
 
 
 function AboutPage({ userMeds, deleteUserMed }) {
-    const [profile, setProfile] = useState(null);
+    // const [profile, setProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [failedAuth, setFailedAuth] = useState(false);
     const navigate = useNavigate();
 
 
 
-    const savedSection = useRef(null);
+    // const savedSection = useRef(null);
 
-    const scrollTo = () => {
-        window.scrollTo({ top: savedSection.current.offsetTop, behavior: 'smooth', });
-    }
+    // const scrollTo = () => {
+    //     window.scrollTo({ top: savedSection.current.offsetTop, behavior: 'smooth', });
+    // }
 
 
     const getProfile = async () => {
@@ -31,7 +31,7 @@ function AboutPage({ userMeds, deleteUserMed }) {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
-            setProfile(response.data);
+            // setProfile(response.data);
             sessionStorage.setItem('profileId', JSON.stringify(response.data.id));
 
 

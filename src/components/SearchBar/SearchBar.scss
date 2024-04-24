@@ -8,14 +8,15 @@
     // justify-content: space-between;
     // border-top: 0.5px solid $silver;
     // border-radius: 9px;
-    padding: 8px;
-    width: 1088px;
-    text-align: center;
-    // margin: auto;
+    padding: 16px 8px 8px;
+    margin-top: 1rem;
+    width: 91vw;
+    // text-align: center;
+    margin: 0 auto;
     // margin: 1rem 0 1rem 11.8rem;
     // background-color: #ffffff;
     position: relative;
-    left: calc((100vw - ($desktop-breakpoint * 0.77))/2);
+    // left: calc((100vw - ( 72vw))/2);
 
 
 }
@@ -25,13 +26,13 @@
     border-radius: 9px;
     padding: 8px;
     margin-right: 8px;
-    width: 30%;
+    width: 100%;///////
     height: 30px;
     display: grid;
 
 
     &::placeholder {
-        font-size: 0.87rem;
+        font-size: 0.587rem;
     }
 
     &:focus {
@@ -57,7 +58,7 @@
     margin-right: 0.5rem;
     padding: 0.5rem;
     padding-right: 1.2rem;
-    margin: 0.25rem;
+    margin:  0.25rem ;
 }
 
 // .search-button {
@@ -80,8 +81,12 @@
 
 .button-group {
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     margin-bottom: 10px;
+    // display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
 }
 
 .filter-button {
@@ -90,19 +95,21 @@
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 5px 16px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    padding: 5px 5px;
+    margin-right: 6px;
+    margin-bottom: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-size: 0.8rem;
+    font-size: 0.68rem; ////// mobile
+    flex: 0 0 auto;  /* Buttons don't grow or shrink but can be based on content width */
+    margin: 5px; 
 
 }
 
 .filter-button:hover {
-    background-color:#f58b73cf;
+    background-color: #f58b73cf;
     color: #ffffff;
- 
+
 }
 
 .filter-button.active {
@@ -119,4 +126,223 @@
 
 .search-bar-container p {
     margin: 5px 0;
+}
+@include tablet {
+    .search-bar-container {
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+        // border-top: 0.5px solid $silver;
+        // border-radius: 9px;
+        margin: 0;
+        padding: 8px;
+        margin-top: 1rem;
+        width: 71vw;
+        text-align: center;
+        // margin: auto;
+        // margin: 1rem 0 1rem 11.8rem;
+        // background-color: #ffffff;
+        position: relative;
+        left: calc((100vw - ( 72vw))/2);
+
+
+    }
+
+    .search-input {
+        border: 0.5px solid $silver;
+        border-radius: 9px;
+        padding: 8px;
+        margin-top: 1rem;
+
+        margin-right: 8px;
+        width: 100%;///////
+        height: 40px;
+        display: grid;
+
+
+        &::placeholder {
+            font-size: 0.87rem;
+        }
+
+        &:focus {
+            border: 1px solid $rx-burnt-orange;
+            outline: $rx-burnt-orange;
+
+        }
+
+    }
+
+
+    .select-box {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: transparent;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position-x: 95%;
+        background-position-y: 50%;
+        border: 0.5px solid $silver;
+        border-radius: 7px;
+        margin-right: 0.5rem;
+        padding: 0.5rem;
+        padding-right: 1.2rem;
+        margin: 0.25rem;
+    }
+
+ 
+
+    .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        width:100%;
+    }
+
+    .filter-button {
+        margin-top: 1rem;
+        background-color: #f0f0f0;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 6px 9px;
+        margin-right: 10px;
+        margin-bottom: 1px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 0.99rem;
+
+    }
+
+    .filter-button:hover {
+        background-color: #f58b73cf;
+        color: #ffffff;
+
+    }
+
+    .filter-button.active {
+        background-color: $rx-orange;
+        color: #fff;
+    }
+
+    .search-input {
+        // padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+        width:39vw
+    }
+
+    .search-bar-container p {
+        margin: 5px 0;
+    }
+}
+
+@include desktop {
+    .search-bar-container {
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+        // border-top: 0.5px solid $silver;
+        // border-radius: 9px;
+        margin: 0;
+        padding: 8px;
+        width: 1088px;
+        text-align: center;
+        // margin: auto;
+        // margin: 1rem 0 1rem 11.8rem;
+        // background-color: #ffffff;
+        position: relative;
+        left: calc((100vw - ($desktop-breakpoint * 0.77))/2);
+
+
+    }
+
+    .search-input {
+        border: 0.5px solid $silver;
+        border-radius: 9px;
+        padding: 8px;
+        margin-top: 1rem;
+        margin-right: 8px;
+        width: 50%;
+        height: 40px;
+        display: grid;
+
+
+        &::placeholder {
+            font-size: 0.87rem;
+        }
+
+        &:focus {
+            border: 1px solid $rx-burnt-orange;
+            outline: $rx-burnt-orange;
+
+        }
+
+    }
+
+
+    .select-box {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: transparent;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position-x: 95%;
+        background-position-y: 50%;
+        border: 0.5px solid $silver;
+        border-radius: 7px;
+        margin-right: 0.5rem;
+        padding: 0.5rem;
+        padding-right: 1.2rem;
+        margin: 0.25rem;
+    }
+
+   
+
+    .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        width: 985px;
+    }
+
+    .filter-button {
+        margin-top: 1rem;
+        background-color: #f0f0f0;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px 16px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 0.99rem;
+
+    }
+
+    .filter-button:hover {
+        background-color: #f58b73cf;
+        color: #ffffff;
+
+    }
+
+    .filter-button.active {
+        background-color: $rx-orange;
+        color: #fff;
+    }
+
+    .search-input {
+        // padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+        height: 40px;
+    }
+
+    .search-bar-container p {
+        margin: 5px 0;
+    }
 }

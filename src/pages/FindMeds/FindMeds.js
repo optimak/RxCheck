@@ -1,6 +1,6 @@
 import "./FindMeds.scss";
 import { useCallback, useEffect, useState } from 'react';
-import { Link, NavLink, Outlet,useLocation } from "react-router-dom";
+import { NavLink, Outlet,useLocation } from "react-router-dom";
 
 import { baseUrl } from "../../consts";
 import axios from "axios";
@@ -105,24 +105,7 @@ function FindMeds({ userMeds }) {
 
    
     return (
-        // <main className="search">
-         
-
-        //     <h1 className="search__title">Find Medications</h1>
-        //     <div className="search__options">
-        //         <Link className="search__options-link " to='/search'> <div> Search</div></Link>
-        //         <Link className="search__options-link " to={`/search/${medData[0].id}`} state={{ filteredMeds, profileId }}> <div> List</div></Link>
-        //     </div>
-
-        //     <div>
-        //         <SearchBar onFilter={filterMeds} data={medData} />
-        //     </div>
-
-
-        //     <Outlet context={{ filteredMeds, profileId, profile }} />
-
-
-        // </main>
+   
     
             <main className="search">
                 <h1 className="search__title">Find Medications</h1>
