@@ -16,16 +16,11 @@ function AboutPage({ userMeds, deleteUserMed }) {
 
 
 
-<<<<<<< HEAD
-
-   
-=======
     // const savedSection = useRef(null);
 
     // const scrollTo = () => {
     //     window.scrollTo({ top: savedSection.current.offsetTop, behavior: 'smooth', });
     // }
->>>>>>> develop
 
 
     const getProfile = async () => {
@@ -37,10 +32,6 @@ function AboutPage({ userMeds, deleteUserMed }) {
             });
 
             // setProfile(response.data);
-<<<<<<< HEAD
-            
-=======
->>>>>>> develop
             sessionStorage.setItem('profileId', JSON.stringify(response.data.id));
 
 
