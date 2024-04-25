@@ -59,20 +59,7 @@ function App() {
   }, [profileId, updateUserComments])
 
 
-  const getUserMeds = async () => {
-    try {
-      const id = profileId ?? sessionStorage.getItem('profileId');
-      const response = await axios.get(`${baseUrl}users/${id}/meds`)
-      setUserMeds(response.data);
-      sessionStorage.setItem('userDrugs', JSON.stringify(response.data));
 
-
-    } catch (error) {
-      console.error(error);
-    }
-
-
-  };
   const deleteUserMed = async (medId, profileId) => {
 
     try {
@@ -91,9 +78,26 @@ function App() {
     setUpdateUserMeds(!updateUserMeds);
   };
   useEffect(() => {
+    const getUserMeds = async () => {
+      try {
+        const id = profileId ?? sessionStorage.getItem('profileId');
+        const response = await axios.get(`${baseUrl}users/${id}/meds`)
+        setUserMeds(response.data);
+        sessionStorage.setItem('userDrugs', JSON.stringify(response.data));
+
+
+      } catch (error) {
+        console.error(error);
+      }
+
+
+    };
+
     getUserMeds();
 
-  }, [updateUserMeds,profileId])
+  }, [
+    updateUserMeds, 
+    profileId])
 
   //get all meds
   const getMeds = async () => {
@@ -110,8 +114,10 @@ function App() {
   };
   useEffect(() => {
     getMeds()
-    updateUserDrugs()
   }, [])
+  // useEffect(() => {
+  //   updateUserDrugs()
+  // }, [])
   const getProfileId = (profileId) => {
     setProfileId(profileId)
   }
