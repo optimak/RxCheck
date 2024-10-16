@@ -23,8 +23,8 @@ This project has an accompanying backend repository found here:
 Checkout rxcheck at https://rxcheck.chiaghaizu.com.
 
 Use the demo account:
-username: testname@example.com
-password: J.hnd.e
+username: chiaghaizu@gmail.com
+password: 1234509876
 ##
 ## Installation
 To run locally, you will need node, npm and MySQL already installed. The backend will also need to be setup to get the app to work accurately.
