@@ -12,13 +12,13 @@ This project has an accompanying backend repository found here:
 
   
 ##  
-## Preview
+<! --## Preview
 
 ![Alt Text](https://lh3.googleusercontent.com/drive-viewer/AKGpihYuZCvhS5gCfGIhL7qG6gA6C9g_xmWYyZw7GJK6fuhW9VUbn5u7a0xikxrAqTF71bagJZBzAqJJyyR3cuvidn3ItAJM2ho8ZBU=s2560)
-##
+##  -->
 
 ## Live Site
-Checkout rxcheck at https://chiaghaizu.com.
+Checkout rxcheck at https://rxcheck.chiaghaizu.com.
 
 Use the demo account:
 username: testname@example.com
